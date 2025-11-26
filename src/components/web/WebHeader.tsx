@@ -188,7 +188,8 @@ const Header: React.FC = () => {
                     </ul>
                 </nav>
                 <nav className="hidden xl:flex gap-4 items-center">
-                    {isAuthenticated && user ? (
+                    {/* TEMPORARILY HIDDEN - Login button */}
+                    {/* {isAuthenticated && user ? (
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="ghost" className="flex items-center gap-2">
@@ -229,7 +230,7 @@ const Header: React.FC = () => {
                                 Log In
                             </Button>
                         </div>
-                    )}
+                    )} */}
                     <span className={ctaStyle()}>
                         {generateLink(ctaTextParameter, !bookEnabledParameter, "Booking Unavailable")}
                     </span>
@@ -331,12 +332,13 @@ const Header: React.FC = () => {
                                         {links.map((link) => (
                                             <NavLink key={link.to} to={link.to} label={link.label} />
                                         ))}
+                                        {/* TEMPORARILY HIDDEN - Login button in mobile menu */}
                                         {/* Separator line */}
-                                        <li className="my-4">
+                                        {/* <li className="my-4">
                                             <div className="w-full h-[0.5px] bg-stone-700/50"></div>
-                                        </li>
+                                        </li> */}
                                         {/* Login/Account section styled as navigation link */}
-                                        <li className="my-4">
+                                        {/* <li className="my-4">
                                             {isAuthenticated && user ? (
                                                 <div className="space-y-4">
                                                     <div className="flex items-center gap-3 text-xl font-light text-stone-400">
@@ -370,7 +372,7 @@ const Header: React.FC = () => {
                                                     </Link>
                                                 </div>
                                             )}
-                                        </li>
+                                        </li> */}
                                     </ul>
                                 </SheetDescription>
                             </SheetHeader>
