@@ -186,7 +186,7 @@ export default function PrivacyPolicy() {
 
           <ul>
             <li>Fadedlines Barbershop</li>
-            <li>55 Portman St, Oakleigh VIC 3166</li>
+            <li>163 GLENFERRIE RD, MALVERN 3144, VICTORIA</li>
             <li>dejan@fadedlinesbarbershop.com</li>
             <li>(03) 9002 1055 </li>
           </ul>

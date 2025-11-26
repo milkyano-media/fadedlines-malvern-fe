@@ -1,4 +1,4 @@
-import AboutUsDejan1 from "@/assets/web/about-us/about_us_dejan_1.png";
+import AboutUsJosh1 from "@/assets/web/about-us/about_us_josh_1.png";
 import TiktokAboutUs from "@/assets/web/about-us/about_us_tiktok.png";
 import dummy from "@/assets/web/about-us/dummy.svg";
 import plus from "@/assets/web/about-us/plus.svg";
@@ -66,7 +66,7 @@ export default function AboutUs() {
     const aboutUsHeadline = useParameterValue<string>("content.about_us_headline", "About Fadedlines");
     const addressParameter = useParameterValue<string>(
         "contact.address",
-        "55 PORTMAN ST; OAKLEIGH VIC 3166; AUSTRALIA"
+        "163 GLENFERRIE RD; MALVERN 3144; VICTORIA"
     );
 
     return (
@@ -115,7 +115,7 @@ export default function AboutUs() {
                 <div className="md:w-1/3">
                     <img
                         alt="background about us"
-                        src={AboutUsDejan1}
+                        src={AboutUsJosh1}
                         className="hover:scale-110 transform transition-transform ease-out duration-500 cursor-pointer delay-75"
                     />
                 </div>
@@ -125,7 +125,7 @@ export default function AboutUs() {
                     <div className="flex flex-col md:flex-row gap-10 mt-10 md:mt-0 md:w-2/4">
                         <h2 className="w-full">
                             Hey, I'm <br />
-                            <span className="text-[var(--text-color-primary)]">Dejan</span>
+                            <span className="text-[var(--text-color-primary)]">Josh</span>
                         </h2>
                         <p>
                             Faded Lines Barbershop wants to bring convivence back into peoples lives. With appointments

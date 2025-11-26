@@ -87,59 +87,9 @@ export default function Barbers() {
         "content.barber_list",
         JSON.stringify([
             {
-                imageUrl: "https://s3.milkyano.com/milkyano/fadedlines-oakleigh/barbers/amir.png",
-                link: generateRoute("/amir"),
-                landing: true,
-            },
-            {
-                imageUrl: "https://s3.milkyano.com/milkyano/fadedlines-oakleigh/barbers/rayhan.png",
-                link: generateRoute("/rayhan"),
-                landing: true,
-            },
-            {
-                imageUrl: "https://s3.milkyano.com/milkyano/fadedlines-oakleigh/barbers/anthony.png",
-                link: generateRoute("/anthony"),
-                landing: true,
-            },
-            {
                 imageUrl: "https://s3.milkyano.com/milkyano/fadedlines-oakleigh/barbers/josh.png",
                 link: generateRoute("/josh"),
                 landing: true,
-            },
-            {
-                imageUrl: "https://s3.milkyano.com/milkyano/fadedlines-oakleigh/barbers/noah.png",
-                link: generateRoute("/noah"),
-                landing: true,
-            },
-            {
-                imageUrl: "https://s3.milkyano.com/milkyano/fadedlines-oakleigh/barbers/jay.png",
-                link: generateRoute("/jay"),
-                landing: true,
-            },
-            {
-                imageUrl: "https://s3.milkyano.com/milkyano/fadedlines-oakleigh/barbers/wyatt-swick.png",
-                link: generateRoute("/wyatt"),
-                landing: true,
-            },
-            {
-                imageUrl: "https://s3.milkyano.com/milkyano/fadedlines-oakleigh/barbers/emman.png",
-                link: generateRoute("/emman"),
-                landing: true,
-            },
-            {
-                imageUrl: "https://s3.milkyano.com/milkyano/fadedlines-oakleigh/barbers/christos.png",
-                link: generateRoute("/christos"),
-                landing: true,
-            },
-            {
-                imageUrl: "https://s3.milkyano.com/milkyano/fadedlines-oakleigh/barbers/niko.png",
-                link: generateRoute("/niko"),
-                landing: true,
-            },
-            {
-                imageUrl: "https://s3.milkyano.com/milkyano/fadedlines-oakleigh/barbers/dejan.png",
-                link: generateRoute("/dejan"),
-                landing: false,
             },
         ])
     );

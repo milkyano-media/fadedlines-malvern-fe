@@ -59,7 +59,7 @@ const ThankYouPage = () => {
   const generateCalendarUrls = () => {
     const startDateTime = localStorage.getItem('appointmentStartAt');
     const serviceName = (bookedItems as ServicesItem[])[0]?.item_data?.name || 'Appointment';
-    const location = 'Fadedlines Barbershop, 55 Portman Street, Oakleigh, VIC 3166';
+    const location = 'Fadedlines Barbershop, 163 GLENFERRIE RD, MALVERN 3144, VICTORIA';
     
     if (!startDateTime) return null;
 
@@ -833,7 +833,7 @@ END:VCALENDAR`,
               <div className='flex flex-col gap-2'>
                 <h3 className='text-sm md:text-xl'>Fadedlines Barbershop</h3>
                 <p className='text-xs font-light text-stone-400'>
-                  55 Portman Street, Oakleigh, VIC 3166
+                  163 GLENFERRIE RD, MALVERN 3144, VICTORIA
                 </p>
               </div>
               <Button className='rounded bg-stone-700 '>

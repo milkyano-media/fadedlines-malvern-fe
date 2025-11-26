@@ -31,7 +31,7 @@ const formSchema = z.object({
 export default function Contacts() {
     const [isLoading, setIsLoading] = useState(false);
     const [status, setStatus] = useState("loading");
-    const emailParameter = useParameterValue<string>("contact.email", "dejan@fadedlinesbarbershop.com");
+    const emailParameter = useParameterValue<string>("contact.email", "Josh@fadedlinesmalvern.com");
     const phoneNumberParameter = useParameterValue<string>("contact.phone_number", "+6135 249 543");
     const instagramLinkParameter = useParameterValue<string>(
         "contact.instagram_url",
@@ -341,7 +341,7 @@ export default function Contacts() {
 
                             <div className="flex flex-col gap-2">
                                 <p>Instagram Page: </p>
-                                <sub>@fadedlinesbarbershop</sub>
+                                <sub>@fadedlinesmalvern</sub>
                             </div>
                         </a>
                     </div>

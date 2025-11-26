@@ -25,7 +25,7 @@ const WebFooter: React.FC = () => {
     const googleAddressParameter = useParameterValue<string>("contact.google_maps_url", "https://g.co/kgs/sdqFwMj");
     const addressParameter = useParameterValue<string>(
         "contact.address",
-        "55 PORTMAN ST; OAKLEIGH VIC 3166; AUSTRALIA"
+        "163 GLENFERRIE RD; MALVERN 3144; VICTORIA"
     );
     const instagramUrlParameter = useParameterValue<string>(
         "contact.instagram_url",
@@ -37,7 +37,7 @@ const WebFooter: React.FC = () => {
     );
     const openingHoursParameter = useParameterValue<string>(
         "contact.business_hours",
-        `[{"day":"Monday","hour":"12 AM - 9 PM"},{"day":"Tuesday","hour":"12 AM - 9 PM"},{"day":"Wednesday","hour":"12 AM - 9 PM"},{"day":"Thursday","hour":"10 AM - 9 PM"},{"day":"Friday","hour":"10 AM - 9 PM"},{"day":"Saturday","hour":"9 AM - 8 PM"},{"day":"Sunday","hour":"6 AM - 12 PM"}]`
+        `[{"day":"Monday","hour":"12 PM - 6 PM"},{"day":"Tuesday","hour":"12 PM - 8 PM"},{"day":"Wednesday","hour":"12 PM - 8 PM"},{"day":"Thursday","hour":"10 AM - 8 PM"},{"day":"Friday","hour":"10 AM - 8 PM"},{"day":"Saturday","hour":"9 AM - 5 PM"},{"day":"Sunday","hour":"10 AM - 2 PM"}]`
     );
     const ctaTextParameter = useParameterValue<string>("content.cta_primary_text", "Book Now");
     const [openingHours, setOpeningHours] = useState<[OpeningTime]>();
