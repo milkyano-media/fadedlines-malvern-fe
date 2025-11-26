@@ -24,7 +24,7 @@ const SocialMediaLinks: React.FC = () => {
         {
             name: "Instagram",
             icon: Instagram,
-            url: "https://www.instagram.com/fadedlinesbarbershop",
+            url: "https://www.instagram.com/fadedlinesmalvern",
         },
         {
             name: "Facebook",

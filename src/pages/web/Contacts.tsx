@@ -35,7 +35,7 @@ export default function Contacts() {
     const phoneNumberParameter = useParameterValue<string>("contact.phone_number", "+6135 249 543");
     const instagramLinkParameter = useParameterValue<string>(
         "contact.instagram_url",
-        "https://www.instagram.com/fadedlinesbarbershop"
+        "https://www.instagram.com/fadedlinesmalvern"
     );
 
     const sendEmail = (values: z.infer<typeof formSchema>) => {

@@ -29,7 +29,7 @@ const WebFooter: React.FC = () => {
     );
     const instagramUrlParameter = useParameterValue<string>(
         "contact.instagram_url",
-        "https://www.instagram.com/fadedlinesbarbershop"
+        "https://www.instagram.com/fadedlinesmalvern"
     );
     const facebookUrlParameter = useParameterValue<string>(
         "contact.facebook_url",
