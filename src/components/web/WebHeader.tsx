@@ -1,22 +1,23 @@
-import { LoginModal } from "@/components/auth/LoginModal";
+// TEMPORARILY HIDDEN - Imports for login functionality
+// import { LoginModal } from "@/components/auth/LoginModal";
 import Logo from "@/components/react-svg/logo";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+// import {
+//     DropdownMenu,
+//     DropdownMenuContent,
+//     DropdownMenuItem,
+//     DropdownMenuLabel,
+//     DropdownMenuSeparator,
+//     DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTrigger } from "@/components/ui/sheet";
-import { useAuth } from "@/hooks/useAuth";
+// import { useAuth } from "@/hooks/useAuth";
 import { useFeatureFlag, useParameterValue } from "@/hooks/useParameter";
 import { generateLink } from "@/pages/web/Home";
 import { useTheme } from "@/ThemeProvider";
-import { LogOut, Settings, User } from "lucide-react";
+// import { LogOut, Settings, User } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Button } from "../ui/button";
+import { Link, useLocation } from "react-router-dom";
+// import { Button } from "../ui/button";
 
 interface NavLinkProps {
     to: string;
@@ -49,10 +50,11 @@ const links = [
 
 const Header: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [showLoginModal, setShowLoginModal] = useState(false);
+    // TEMPORARILY HIDDEN - Login state and auth
+    // const [showLoginModal, setShowLoginModal] = useState(false);
     const location = useLocation();
-    const navigate = useNavigate();
-    const { isAuthenticated, user, logout } = useAuth();
+    // const navigate = useNavigate();
+    // const { isAuthenticated, user, logout } = useAuth();
 
     // Fetch logo parameters
     const { theme } = useTheme();
@@ -381,15 +383,15 @@ const Header: React.FC = () => {
                 </nav>
             </div>
 
-            {/* Login Modal */}
-            <LoginModal
+            {/* TEMPORARILY HIDDEN - Login Modal */}
+            {/* <LoginModal
                 isOpen={showLoginModal}
                 onClose={() => setShowLoginModal(false)}
                 onForgotPassword={() => {
                     setShowLoginModal(false);
                     navigate("/forgot-password");
                 }}
-            />
+            /> */}
         </header>
     );
 };
