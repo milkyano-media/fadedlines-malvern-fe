@@ -66,7 +66,7 @@ export default function AboutUs() {
     const aboutUsHeadline = useParameterValue<string>("content.about_us_headline", "About Fadedlines");
     const addressParameter = useParameterValue<string>(
         "contact.address",
-        "163 GLENFERRIE RD; MALVERN 3144; VICTORIA"
+        "163 GLENFERRIE RD, MALVERN 3144, VICTORIA"
     );
 
     return (

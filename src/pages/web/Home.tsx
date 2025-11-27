@@ -107,7 +107,7 @@ export default function Home() {
     const heroSubtitle = useParameterValue<string>("content.homepage_hero_subtitle", "FOR YOUR HAIR");
     const addressParameter = useParameterValue<string>(
         "contact.address",
-        "163 GLENFERRIE RD; MALVERN 3144; VICTORIA"
+        "163 GLENFERRIE RD, MALVERN 3144, VICTORIA"
     );
 
     const [faqs, setFaqs] = useState<[Faq]>();

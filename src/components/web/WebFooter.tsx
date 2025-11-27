@@ -25,7 +25,7 @@ const WebFooter: React.FC = () => {
     const googleAddressParameter = useParameterValue<string>("contact.google_maps_url", "https://g.co/kgs/sdqFwMj");
     const addressParameter = useParameterValue<string>(
         "contact.address",
-        "163 GLENFERRIE RD; MALVERN 3144; VICTORIA"
+        "163 GLENFERRIE RD, MALVERN 3144, VICTORIA"
     );
     const instagramUrlParameter = useParameterValue<string>(
         "contact.instagram_url",
