@@ -588,8 +588,8 @@ const BookContactInfo = () => {
                 )}
               </div>
 
-              {/* Login prompt for unauthenticated users */}
-              {!isAuthenticated && (
+              {/* COMMENTED OUT FOR FUTURE FEATURE - Login prompt for unauthenticated users */}
+              {/* {!isAuthenticated && (
                 <div className="col-span-2">
                   <div className="bg-amber-900/20 border border-amber-600/50 rounded-lg p-3">
                     <p className="text-xs text-amber-200 mb-2">
@@ -606,7 +606,7 @@ const BookContactInfo = () => {
                       >
                         Sign In
                       </Button>
-                      {/* <Link
+                      <Link
                         to={`/register?redirect=${encodeURIComponent(window.location.pathname)}`}
                         className="flex-1"
                         onClick={() => {
@@ -624,11 +624,11 @@ const BookContactInfo = () => {
                         >
                           Create Account
                         </Button>
-                      </Link> */}
+                      </Link>
                     </div>
                   </div>
                 </div>
-              )}
+              )} */}
 
               <h3 className="text-sm font-medium">Contact Info</h3>
               <div className="col-span-2">
