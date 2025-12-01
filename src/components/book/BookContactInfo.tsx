@@ -29,7 +29,9 @@ import {
 import { Check, X } from "react-bootstrap-icons";
 import Spinner from "@/components/web/Spinner";
 import {
-  postBooking
+  postBooking,
+  postCustomer,
+  getCustomerByEmailAndPhone
 } from "@/utils/barberApi";
 import { trackBookingCreated } from "@/utils/eventTracker";
 import {
@@ -262,12 +264,15 @@ const BookContactInfo = () => {
   };
 
   const submitContactForm = async (values: z.infer<typeof formSchema>) => {
-    // Check if user is authenticated
-    if (!isAuthenticated) {
-      // setShowAuthRequiredModal(true);
-      handleSignIn();
-      return;
-    }
+    // COMMENTED OUT FOR FUTURE FEATURE - Authentication requirement for booking
+    // Currently allowing guest bookings without login
+    // TODO: Re-enable when authentication is required for booking flow
+    // // Check if user is authenticated
+    // if (!isAuthenticated) {
+    //   // setShowAuthRequiredModal(true);
+    //   handleSignIn();
+    //   return;
+    // }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { appointment_note, ...restValues } = values;
@@ -298,15 +303,32 @@ const BookContactInfo = () => {
       }
 
       let customerId;
-      
-      // Simple flow: authenticated users already have Square customer ID
+
+      // Handle both authenticated and guest bookings
       if (isAuthenticated && user) {
+        // Authenticated users already have Square customer ID
         customerId = user.id;
       } else {
-        // This shouldn't happen since booking requires authentication
-        throw new Error("Authentication required for booking");
+        // Guest booking: Check if customer exists, otherwise create new customer
+        try {
+          const existingCustomer = await getCustomerByEmailAndPhone(
+            valuesWithIdempotencyKey.email_address,
+            valuesWithIdempotencyKey.phone_number
+          );
+
+          if (existingCustomer && existingCustomer.id) {
+            customerId = existingCustomer.id;
+          } else {
+            // Create new customer for guest booking
+            const newCustomer = await postCustomer(valuesWithIdempotencyKey);
+            customerId = newCustomer.customer.id;
+          }
+        } catch (error) {
+          console.error("Error handling customer:", error);
+          throw new Error("Failed to create or find customer");
+        }
       }
-      
+
       if (!customerId) {
         throw new Error("Customer ID is missing from the response.");
       }
@@ -347,7 +369,7 @@ const BookContactInfo = () => {
       }
       const handlePurchase = () => {
         localStorage.setItem("purchase_value", total.toString());
-        localStorage.setItem("new_customer", "false"); // Always false for authenticated users
+        localStorage.setItem("new_customer", "false"); // Set to false for all bookings (authenticated and guest)
         localStorage.setItem("booking_id", booking.booking.id);
         localStorage.setItem(
           "barber_id",
@@ -500,10 +522,10 @@ const BookContactInfo = () => {
   // };
 
   // Handle Sign In button in auth required modal
-  const handleSignIn = () => {
-    // setShowAuthRequiredModal(false);
-    setShowLoginModal(true);
-  };
+  // const handleSignIn = () => {
+  //   // setShowAuthRequiredModal(false);
+  //   setShowLoginModal(true);
+  // };
 
   return (
     <section className="relative bg-[#010401] flex flex-col p-4  items-center md:items-start justify-center z-30 md:px-40 min-h-screen gap-0">
