@@ -8,15 +8,15 @@ import Layout from "@/components/web/WebLayout";
 import { useParameterValue } from "@/hooks/useParameter";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
-import instagramPhotosDesktop1 from "/src/assets/follow-us/desktop/instagram_photo_1.png";
-import instagramPhotosDesktop2 from "/src/assets/follow-us/desktop/instagram_photo_2.png";
-import instagramPhotosDesktop3 from "/src/assets/follow-us/desktop/instagram_photo_3.png";
-import instagramPhotosDesktop4 from "/src/assets/follow-us/desktop/instagram_photo_4.png";
+import instagramPhotosDesktop1 from "/src/assets/follow-us/desktop/instagram_photo_1.jpeg";
+import instagramPhotosDesktop2 from "/src/assets/follow-us/desktop/instagram_photo_2.jpeg";
+import instagramPhotosDesktop3 from "/src/assets/follow-us/desktop/instagram_photo_3.jpeg";
+import instagramPhotosDesktop4 from "/src/assets/follow-us/desktop/instagram_photo_4.jpeg";
 import instagramPhotosDesktop5 from "/src/assets/follow-us/desktop/instagram_photo_5.png";
-import instagramPhotosMobile1 from "/src/assets/follow-us/mobile/instagram_photo_1.png";
-import instagramPhotosMobile2 from "/src/assets/follow-us/mobile/instagram_photo_2.png";
-import instagramPhotosMobile3 from "/src/assets/follow-us/mobile/instagram_photo_3.png";
-import instagramPhotosMobile4 from "/src/assets/follow-us/mobile/instagram_photo_4.png";
+import instagramPhotosMobile1 from "/src/assets/follow-us/mobile/instagram_photo_1.jpeg";
+import instagramPhotosMobile2 from "/src/assets/follow-us/mobile/instagram_photo_2.jpeg";
+import instagramPhotosMobile3 from "/src/assets/follow-us/mobile/instagram_photo_3.jpeg";
+import instagramPhotosMobile4 from "/src/assets/follow-us/mobile/instagram_photo_4.jpeg";
 import instagramPhotosMobile5 from "/src/assets/follow-us/mobile/instagram_photo_5.png";
 import { useEffect, useState } from "react";
 
@@ -76,10 +76,10 @@ export const generateLink = (
 };
 
 const instagram_images_desktop = [
-    { image: instagramPhotosDesktop1, name: "Mid Burst Fade" },
-    { image: instagramPhotosDesktop2, name: "Mid Drop Fade" },
-    { image: instagramPhotosDesktop3, name: "Mid Taper" },
-    { image: instagramPhotosDesktop4, name: "V Low Drop Fade" },
+    { image: instagramPhotosDesktop1, name: "" },
+    { image: instagramPhotosDesktop2, name: "" },
+    { image: instagramPhotosDesktop3, name: "" },
+    { image: instagramPhotosDesktop4, name: "" },
     { image: instagramPhotosDesktop5, name: "" },
 ];
 

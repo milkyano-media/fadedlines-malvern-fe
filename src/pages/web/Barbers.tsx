@@ -87,7 +87,7 @@ export default function Barbers() {
         "content.barber_list",
         JSON.stringify([
             {
-                imageUrl: "https://s3.milkyano.com/milkyano/fadedlines-oakleigh/barbers/josh.png",
+                imageUrl: "https://s3.milkyano.com/milkyano/fadedlines-malvern/barbers/josh.png",
                 link: generateRoute("/josh"),
                 landing: true,
             },
