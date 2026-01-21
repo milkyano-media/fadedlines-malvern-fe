@@ -1,6 +1,7 @@
 // TEMPORARILY HIDDEN - Imports for login functionality
 // import { LoginModal } from "@/components/auth/LoginModal";
-import Logo from "@/components/react-svg/logo";
+import IconNavbarGreen from "@/assets/svg/icon-navbar-green.svg";
+import HeaderMiddle from "@/assets/web/navbar-logo-malvern.png";
 // import {
 //     DropdownMenu,
 //     DropdownMenuContent,
@@ -13,7 +14,6 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTrigger } from
 // import { useAuth } from "@/hooks/useAuth";
 import { useFeatureFlag, useParameterValue } from "@/hooks/useParameter";
 import { generateLink } from "@/pages/web/Home";
-import { useTheme } from "@/ThemeProvider";
 // import { LogOut, Settings, User } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -41,7 +41,6 @@ const NavLink: React.FC<NavLinkProps> = ({ to, label }) => {
 
 const links = [
     { to: "/", label: "Home" },
-    { to: "/barbers", label: "Barbers" },
     { to: "/gallery", label: "Gallery" },
     { to: "/about-us", label: "About Us" },
     { to: "/careers", label: "Careers" },
@@ -56,13 +55,6 @@ const Header: React.FC = () => {
     // const navigate = useNavigate();
     // const { isAuthenticated, user, logout } = useAuth();
 
-    // Fetch logo parameters
-    const { theme } = useTheme();
-    const logoUrl = useParameterValue<string>("branding.logo", "");
-    const logoUrlDark = useParameterValue<string>("branding.logo_dark", "");
-
-    // Use dark logo if theme is dark and dark logo exists, otherwise use regular logo, fallback to Logo component
-    const currentLogo = theme === "dark" && logoUrlDark ? logoUrlDark : logoUrl || null;
 
     const ctaTextParameter = useParameterValue<string>("content.cta_primary_text", "Book Now");
     const bookEnabledParameter = useFeatureFlag("booking_enabled", true);
@@ -108,22 +100,29 @@ const Header: React.FC = () => {
     return (
         <header
             ref={headerRef}
-            className="text-white shadow-lg shadow-[--shadow-color] border-b-[0.5px] border-[var(--border-color)] z-50 py-4 sticky top-0"
+            className="text-white shadow-lg shadow-[--shadow-color] border-b-[0.5px] border-[var(--border-color)] z-[100] py-4 sticky top-0"
             style={{
                 marginBottom: `-${height}px`,
                 background: "linear-gradient(180deg, rgba(3, 18, 13, 0.75) 14.29%, rgba(3, 18, 13, 0.6) 100%)",
             }}
         >
-            <div className="container mx-auto flex justify-between items-center relative border-none px-2 md:px-4">
+            <div className="container mx-auto flex justify-between items-center relative z-10 border-none px-2 md:px-4">
                 <h1 className="text-2xl font-bold text-transparent hidden ">Barber Shop</h1>
                 <div className="flex flex-col justify-center items-center">
                     <Link to={generateRoute("/home")}>
-                        {currentLogo ? (
-                            <img src={currentLogo} alt="logo" className="w-48 md:w-36 h-auto opacity-90" />
-                        ) : (
-                            <Logo className="w-48 md:w-36 h-auto opacity-90 " />
-                        )}
+                        <img
+                            src={IconNavbarGreen}
+                            alt="Fadedlines Barber Shop"
+                            className="w-8 md:w-10 h-auto opacity-100"
+                        />
                     </Link>
+                </div>
+                <div className="lg:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none">
+                    <img
+                        src={HeaderMiddle}
+                        alt="Header decoration"
+                        className="h-20 md:h-24 w-auto opacity-100"
+                    />
                 </div>
                 <nav className="hidden lg:block sticky top-0">
                     <ul className="flex text-white/80">
@@ -135,16 +134,6 @@ const Header: React.FC = () => {
                                 }`}
                             >
                                 HOME
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to={generateRoute("/barbers")}
-                                className={`text-md uppercase font-bold px-4 hover:text-white ${
-                                    location.pathname === "/barbers" ? "text-white" : ""
-                                }`}
-                            >
-                                BARBERS
                             </Link>
                         </li>
                         <li>

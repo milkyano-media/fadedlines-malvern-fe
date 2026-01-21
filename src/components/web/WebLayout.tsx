@@ -6,7 +6,12 @@ import React, { ReactNode, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useGtm } from "../hooks/UseGtm";
 
-const WebLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
+interface WebLayoutProps {
+    children: ReactNode;
+    gap?: string;
+}
+
+const WebLayout: React.FC<WebLayoutProps> = ({ children, gap = "gap-40" }) => {
     const location = useLocation();
     const { sendEvent } = useGtm();
 
@@ -27,7 +32,7 @@ const WebLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
             {/* Emergency alert - appears below promotional banner when message is set */}
             <EmergencyAlert />
             <WebHeader />
-            <main className="flex flex-col gap-40">{children}</main>
+            <main className={`flex flex-col ${gap}`}>{children}</main>
             <WebFooter />
         </div>
     );

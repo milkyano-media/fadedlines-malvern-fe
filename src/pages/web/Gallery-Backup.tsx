@@ -1,16 +1,19 @@
+import { Button } from "@/components/ui/button";
 import CardStack from "@/components/web/CardStack";
 import CarauselGallery from "@/components/web/OurWorks";
 import Layout from "@/components/web/WebLayout";
-import BookNowButton from "@/components/web/BookNowButton";
+import { useFeatureFlag, useParameterValue } from "@/hooks/useParameter";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Helmet } from "react-helmet-async";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function GalleriesPage() {
+    const ctaTextParameter = useParameterValue<string>("content.cta_primary_text", "Book Now");
+    const bookEnabledParameter = useFeatureFlag("booking_enabled", true);
+
     localStorage.removeItem("booking_source");
 
     const location = useLocation();
-    const navigate = useNavigate();
 
     const getQueryParams = (search: string) => {
         return new URLSearchParams(search);
@@ -50,10 +53,24 @@ export default function GalleriesPage() {
         localStorage.setItem("booking_origin", "organic");
     }
 
-    const handleBookNow = () => {
+    const generateLink = (text: string): JSX.Element => {
+        const customize: boolean = true;
+        const squareLink: string =
+            "https://book.squareup.com/appointments/ud9yhcwfqc1fg0/location/LY7BZ89WAQ2QS/services";
+
+        let bookLink: string;
         const parts = location.pathname.split("/");
-        const bookLink = parts[1] === "meta" ? `/meta/book/services` : "/book/services";
-        navigate(bookLink);
+        if (parts[1] === "meta") {
+            bookLink = `/meta/book/services`;
+        } else {
+            bookLink = "/book/services";
+        }
+
+        if (customize) {
+            return <Link to={bookLink}>{text}</Link>;
+        } else {
+            return <a href={squareLink}>{text}</a>;
+        }
     };
 
     const { scrollYProgress } = useScroll();
@@ -78,7 +95,7 @@ export default function GalleriesPage() {
             </Helmet>
 
             <div className="flex flex-col text-stone-50 bg-black w-full relative mt-10 bg-theme-bg">
-                <section className="py-12 pt-32 px-0 container pr-0  md:pr-4 relative z-10 flex gap-12 justify-center items-center flex-col md:flex-row overflow-hidden">
+                <section className="py-12 pt-32 px-0 container pr-0  md:pr-4 relative z-30 flex gap-12 justify-center items-center flex-col md:flex-row overflow-hidden">
                     <div className="w-full md:w-10/12 flex flex-col justify-end md:pb-24 h-full">
                         <h3 className="text-3xl md:text-4xl font-extrabold tracking-wider flex flex-col md:gap-2 text-center md:text-right">
                             <span className="text-[var(--text-color-secondary)]">BE OUR NEXT</span>
@@ -86,10 +103,12 @@ export default function GalleriesPage() {
                                 MASTERPIECE
                             </span>
                         </h3>
-                        <BookNowButton
-                            onClick={handleBookNow}
-                            className="self-center md:self-end mt-6 px-20 py-4 md:px-20 md:py-5 text-xl md:text-5xl"
-                        />
+                        <Button
+                            className="bg-[#454545] border-[0.5px] border-white text-2xl text-[var(--text-color-primary)] font-bold px-16 py-7 w-max self-center md:self-end mt-6 hover:bg-[#454545]/80"
+                            disabled={!bookEnabledParameter}
+                        >
+                            {generateLink(ctaTextParameter)}
+                        </Button>
                     </div>
                     <div className="relative w-full min-h-[25rem] md:min-h-[40rem]">
                         <div className="absolute inset-0 overflow-hidden">
@@ -101,7 +120,7 @@ export default function GalleriesPage() {
                     </div>
                 </section>
 
-                <div className=" w-full flex justify-center py-12 relative z-20">
+                <div className=" w-full flex justify-center py-12 relative">
                     <div className="h-40 w-[1px] bg-[var(--primary-color-20)] z-0" />
                     <motion.div
                         className="absolute h-[18rem] w-[2px] bg-gradient-to-b from-[var(--primary-color-20)] to-[var(--primary-color-50)] shadow-tiny shadow-[var(--primary-color-50)] origin-top z-10"
@@ -109,7 +128,7 @@ export default function GalleriesPage() {
                     />
                 </div>
 
-                <section className="relative z-[40] pb-[10rem] md:pb-[30rem] pt-12">
+                <section className="relative z-[99999999] pb-[10rem] md:pb-[30rem] pt-12">
                     <section className=" w-full relative flex flex-col items-center text-center  container">
                         <div className="w-full px-4 md:px-0 flex flex-col gap-4 ">
                             <h3 className="text-[var(--text-color-secondary)] text-2xl md:text-3xl tracking-wider font-extrabold w-full md:w-1/3 mx-auto font-poppins">
@@ -122,7 +141,7 @@ export default function GalleriesPage() {
                         </div>
                     </section>
 
-                    <section className="relative z-[30] flex flex-col gap-2  py-4 container mx-0 max-w-none px-0">
+                    <section className="relative z-[99999] flex flex-col gap-2  py-4 container mx-0 max-w-none px-0">
                         <CarauselGallery />
                     </section>
                 </section>

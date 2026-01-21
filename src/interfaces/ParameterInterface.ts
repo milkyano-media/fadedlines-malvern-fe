@@ -132,6 +132,7 @@ export interface ParameterValues {
     "contact.address"?: string;
     "contact.business_hours"?: Record<string, string>;
     "contact.google_maps_url"?: string;
+    "contact.google_review_url"?: string;
     "contact.instagram_url"?: string;
     "contact.facebook_url"?: string;
 }

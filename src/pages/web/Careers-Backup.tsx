@@ -9,10 +9,10 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Spinner from "@/components/web/Spinner";
-import BookNowButton from "@/components/web/BookNowButton";
 import Layout from "@/components/web/WebLayout";
 import emailjs from "@emailjs/browser";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -252,12 +252,12 @@ export default function Careers() {
                                         </FormItem>
                                     )}
                                 />
-                                <BookNowButton
-                                    className="w-full py-7 text-xl"
+                                <Button
+                                    className="w-full bg-[var(--primary-color)] rounded-xl text-black py-7 text-xl"
                                     type="submit"
                                 >
                                     CONTINUE
-                                </BookNowButton>
+                                </Button>
                             </form>
                         </Form>
                     </div>

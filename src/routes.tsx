@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from '@/pages/web/Home';
-import Barbers from '@/pages/web/Barbers';
 import Gallery from '@/pages/web/Gallery';
 import AboutUs from '@/pages/web/AboutUs';
 import Careers from '@/pages/web/Careers';
@@ -42,7 +41,6 @@ import DynamicThemeExample from './components/web/DynamicThemeExample';
 const webRoutes = [
   { path: '', component: Home },
   { path: 'home', component: Home },
-  { path: 'barbers', component: Barbers },
   { path: 'gallery', component: Gallery },
   { path: 'about-us', component: AboutUs },
   { path: 'careers', component: Careers },
@@ -66,7 +64,6 @@ const adminRoutes = [
 const metaWebRoutes = [
   { path: 'meta', component: Home },
   { path: 'meta/home', component: Home },
-  { path: 'meta/barbers', component: Barbers },
   { path: 'meta/gallery', component: Gallery },
   { path: 'meta/about-us', component: AboutUs },
   { path: 'meta/careers', component: Careers },
