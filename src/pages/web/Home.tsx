@@ -3,7 +3,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
 import BookNowButton from "@/components/web/BookNowButton";
-import BgHero2 from "@/assets/web/home/hero.svg";
+import BgHero2 from "@/assets/web/home/hero.jpeg";
 import Logo from "@/assets/web/icons/logo.svg";
 import Instagram from "@/assets/web/icons/Instagram.svg";
 import Tiktok from "@/assets/web/icons/Tiktok.svg";
