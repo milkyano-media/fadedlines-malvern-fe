@@ -96,6 +96,8 @@ const bookRoutes = [
   { path: 'emman/book/services', component: BookList },
   { path: 'jay/book/services', component: BookList },
   { path: 'josh/book/services', component: BookList },
+  { path: 'john/book/services', component: BookList },
+  { path: 'mike/book/services', component: BookList },
   { path: 'niko/book/services', component: BookList },
   { path: 'rayhan/book/services', component: BookList },
   { path: 'wyatt/book/services', component: BookList },
@@ -110,12 +112,13 @@ const appointmentRoutes = [
   { path: 'emman/book/appointment', component: BookAppointment },
   { path: 'jay/book/appointment', component: BookAppointment },
   { path: 'josh/book/appointment', component: BookAppointment },
+  { path: 'john/book/appointment', component: BookAppointment },
+  { path: 'mike/book/appointment', component: BookAppointment },
   { path: 'niko/book/appointment', component: BookAppointment },
   { path: 'rayhan/book/appointment', component: BookAppointment },
   { path: 'wyatt/book/appointment', component: BookAppointment },
   { path: 'noah/book/appointment', component: BookAppointment },
   { path: 'amir/book/appointment', component: BookAppointment }
-  // { path: "mustafa/book/appointment", component: BookAppointment },
 ];
 
 const contactInfoRoutes = [
@@ -125,6 +128,8 @@ const contactInfoRoutes = [
   { path: 'emman/book/contact-info', component: BookContactInfo },
   { path: 'jay/book/contact-info', component: BookContactInfo },
   { path: 'josh/book/contact-info', component: BookContactInfo },
+  { path: 'john/book/contact-info', component: BookContactInfo },
+  { path: 'mike/book/contact-info', component: BookContactInfo },
   { path: 'niko/book/contact-info', component: BookContactInfo },
   { path: 'rayhan/book/contact-info', component: BookContactInfo },
   { path: 'wyatt/book/contact-info', component: BookContactInfo },
@@ -139,6 +144,8 @@ const ThankYouRoutes = [
   { path: 'emman/book/thank-you', component: ThankYou },
   { path: 'jay/book/thank-you', component: ThankYou },
   { path: 'josh/book/thank-you', component: ThankYou },
+  { path: 'john/book/thank-you', component: ThankYou },
+  { path: 'mike/book/thank-you', component: ThankYou },
   { path: 'niko/book/thank-you', component: ThankYou },
   { path: 'rayhan/book/thank-you', component: ThankYou },
   { path: 'wyatt/book/thank-you', component: ThankYou },
