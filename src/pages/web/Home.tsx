@@ -14,13 +14,13 @@ import { useParameterValue } from "@/hooks/useParameter";
 
 // Preview images (for large preview)
 import Josh from "@/assets/web/barbers/josh.png";
+import John from "@/assets/web/barbers/john.png";
+import Mike from "@/assets/web/barbers/mike.png";
 
 // Gallery images (for grid thumbnails)
 import JoshGallery from "@/assets/web/barbers/barbers-gallery/josh.png";
-
-// CTA Button SVGs - Barber-specific
-import JoshCTA from "@/assets/web/barbers/cta-button/josh.svg";
-import JoshCTAHover from "@/assets/web/barbers/cta-button/josh-hover.svg";
+import JohnGallery from "@/assets/web/barbers/barbers-gallery/john.png";
+import MikeGallery from "@/assets/web/barbers/barbers-gallery/mike.png";
 
 export const generateLink = (text: string, disabled: boolean = false, disabledText: string = ""): JSX.Element => {
   const customize: boolean = true;
@@ -63,7 +63,6 @@ export default function Home() {
 
   // Gallery state management
   const [selectedBarber, setSelectedBarber] = useState(0);
-  const [isButtonHovered, setIsButtonHovered] = useState(false);
   const previewImageRef = useRef<HTMLDivElement>(null);
   const bookNowButtonRef = useRef<HTMLDivElement>(null);
 
@@ -131,21 +130,32 @@ export default function Home() {
       link: generateRoute("/josh"),
       landing: true,
     },
-  ];
-
-  // CTA Button mapping for each barber
-  const barberCTAButtons = [
-    { normal: JoshCTA, hover: JoshCTAHover },      // 0: Josh
+    {
+      svg: John,
+      thumbnail: JohnGallery,
+      link: generateRoute("/john"),
+      landing: true,
+    },
+    {
+      svg: Mike,
+      thumbnail: MikeGallery,
+      link: generateRoute("/mike"),
+      landing: true,
+    },
   ];
 
   // Transform barberSvgs into gallery-friendly format
-  const galleryBarbers = barberSvgs.map((barber, index) => ({
-    image: barber.svg, // For preview/placeholder
-    thumbnail: barber.thumbnail, // For grid thumbnails
+  const baseGalleryBarbers = barberSvgs.map((barber, index) => ({
+    image: barber.svg,
+    thumbnail: barber.thumbnail,
     name: barber.link.split('/').pop()?.toUpperCase() || `BARBER ${index + 1}`,
     link: barber.link,
     landing: barber.landing,
+    originalIndex: index, // Track original index for selection
   }));
+
+  // Duplicate barbers for infinite scroll effect (3x to create 9 items)
+  const galleryBarbers = [...baseGalleryBarbers, ...baseGalleryBarbers, ...baseGalleryBarbers];
 
   // Embla: Sync selected slide with state
   const onSelect = useCallback(() => {
@@ -155,6 +165,9 @@ export default function Home() {
 
   useEffect(() => {
     if (!emblaApi) return;
+
+    // Start at middle set for better infinite scroll experience
+    emblaApi.scrollTo(baseGalleryBarbers.length, true); // instant scroll, no animation
 
     onSelect();
     emblaApi.on('select', onSelect);
@@ -176,15 +189,16 @@ export default function Home() {
   };
 
   // Interaction handlers for gallery
-  const handleThumbnailClick = (index: number, e?: React.MouseEvent) => {
+  const handleThumbnailClick = (originalIndex: number, e?: React.MouseEvent) => {
     if (e) {
       e.preventDefault();
       e.stopPropagation();
     }
 
-    // Use Embla to scroll to the selected index
+    // Scroll to middle set of duplicates (originalIndex + 3) for better centering
+    const carouselIndex = originalIndex + baseGalleryBarbers.length;
     if (emblaApi) {
-      emblaApi.scrollTo(index);
+      emblaApi.scrollTo(carouselIndex);
     }
 
     // Smooth scroll to preview with offset
@@ -370,7 +384,7 @@ export default function Home() {
             ref={emblaRef}
             className="relative overflow-hidden mb-6 md:mb-8 pt-2 pb-[5px]"
           >
-            <div className="flex items-center justify-center">
+            <div className="flex items-center">
               {galleryBarbers.map((barber, index) => {
                 return (
                   <div
@@ -466,26 +480,22 @@ export default function Home() {
             <div className="absolute w-full h-[2px] bg-[#33FF00]"></div>
             <div className="relative z-10 px-4 bg-black">
               <Link to={`${generateRoute(`/${galleryBarbers[selectedBarber].name.toLowerCase()}/book/services`)}`}>
-                <img
-                  src={isButtonHovered ? barberCTAButtons[selectedBarber].hover : barberCTAButtons[selectedBarber].normal}
-                  alt={`Book With ${galleryBarbers[selectedBarber].name}`}
-                  className="w-auto cursor-pointer h-[90px] md:h-[130px]"
-                  onMouseEnter={() => setIsButtonHovered(true)}
-                  onMouseLeave={() => setIsButtonHovered(false)}
-                />
+                <BookNowButton className="px-8 md:px-12 py-4 md:py-5 text-base md:text-xl whitespace-nowrap">
+                  BOOK WITH {galleryBarbers[selectedBarber].name}
+                </BookNowButton>
               </Link>
             </div>
           </div>
 
-          {/* THUMBNAIL GRID (centered for single barber) */}
+          {/* THUMBNAIL GRID (shows original 3 barbers only) */}
           <div className="max-w-screen-md mx-auto relative px-1 md:px-0">
             <div className="flex justify-center gap-4 md:gap-9">
-              {galleryBarbers.map((barber, index) => (
+              {baseGalleryBarbers.map((barber, index) => (
                 <div
                   key={index}
                   onClick={(e) => handleThumbnailClick(index, e)}
                   className={`w-32 h-32 md:w-48 md:h-48 overflow-hidden rounded-md md:rounded-lg transition-all duration-200 cursor-pointer relative ${
-                    selectedBarber === index
+                    galleryBarbers[selectedBarber]?.originalIndex === index
                       ? "ring-2 md:ring-4 ring-[#33FF00] scale-100"
                       : "hover:opacity-80 hover:scale-105"
                   }`}
@@ -502,10 +512,10 @@ export default function Home() {
 
             {/* Grid Pattern Divider Lines */}
             {/* Vertical line between column 1 and 2 */}
-            <div className="absolute top-0 left-[33.33%] w-[1px] md:w-[2px] h-full bg-[#33FF00] pointer-events-none" style={{ transform: 'translateX(-0.5px)' }}></div>
+            <div className="absolute top-0 left-[35.33%] w-[1px] md:w-[2px] h-full bg-[#33FF00] pointer-events-none" style={{ transform: 'translateX(-0.5px)' }}></div>
 
             {/* Vertical line between column 2 and 3 */}
-            <div className="absolute top-0 left-[66.66%] w-[1px] md:w-[2px] h-full bg-[#33FF00] pointer-events-none" style={{ transform: 'translateX(-0.5px)' }}></div>
+            <div className="absolute top-0 left-[64.66%] w-[1px] md:w-[2px] h-full bg-[#33FF00] pointer-events-none" style={{ transform: 'translateX(-0.5px)' }}></div>
 
             {/* Horizontal line after row 1 (33.33% down) - Commented out because it cuts through photo with single barber */}
             {/* <div className="absolute left-0 top-[33.33%] w-full h-[1px] md:h-[2px] bg-[#33FF00] pointer-events-none" style={{ transform: 'translateY(-0.5px)' }}></div> */}
