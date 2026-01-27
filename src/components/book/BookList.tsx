@@ -13,30 +13,17 @@ import Spinner from "../web/Spinner";
 import Logo from "@/components/react-svg/logo";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-import Rayhan from "@/assets/web/barbers/booking-list/rayhan-book.jpeg";
-import Anthony from "@/assets/web/barbers/booking-list/anthony-book.jpeg";
-import Jay from "@/assets/web/barbers/booking-list/jay-book.svg";
-import Wyatt from "@/assets/web/barbers/booking-list/wyatt-book.svg";
-import Emman from "@/assets/web/barbers/booking-list/emman-book.svg";
-import Christos from "@/assets/web/barbers/booking-list/christos-book.svg";
 import Josh from "@/assets/web/barbers/booking-list/josh-book.jpeg";
-import Niko from "@/assets/web/barbers/booking-list/niko-book.svg";
-import Noah from "@/assets/web/barbers/booking-list/noah-book.png";
-import Amir from "@/assets/web/barbers/booking-list/amir-book.svg";
+import John from "@/assets/web/barbers/booking-list/john-book.jpg";
+import Mike from "@/assets/web/barbers/booking-list/mike-book.jpg";
+
 import LineBottomBorder from "@/assets/book/line-bottom-border.svg";
 import InstagramIcon from "@/assets/book/mdi_instagram.svg";
 
 const barberImages: { [key: string]: string } = {
-  RAYHAN: Rayhan,
-  ANTHONY: Anthony,
-  JAY: Jay,
-  WYATT: Wyatt,
-  EMMAN: Emman,
-  CHRISTOS: Christos,
   JOSH: Josh,
-  NIKO: Niko,
-  NOAH: Noah,
-  AMIR: Amir,
+  JOHN: John,
+  MIKE: Mike,
 };
 
 const BookList = () => {
@@ -56,16 +43,7 @@ const BookList = () => {
       const barberServices: BarberServices = { data: [] };
 
       const sortOrder = [
-        "AMIR",
-        "RAYHAN",
-        "JAY",
-        "NOAH",
-        "EMMAN",
-        "NIKO",
-        "ANTHONY",
         "JOSH",
-        "CHRISTOS",
-        "WYATT",
       ];
 
       // 1. Use all available profiles
