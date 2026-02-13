@@ -506,7 +506,7 @@ export default function Home() {
                     galleryBarbers[selectedBarber]?.originalIndex === index
                       ? "ring-2 md:ring-4 ring-[#33FF00] scale-100"
                       : "hover:opacity-80 hover:scale-105"
-                  }`}
+                  } ${index === 3 ? 'col-start-2' : ''}`}
                 >
                 <img
                   src={barber.thumbnail}
