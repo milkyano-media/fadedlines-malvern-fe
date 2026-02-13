@@ -16,6 +16,8 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import Josh from "@/assets/web/barbers/booking-list/josh-book.jpeg";
 import John from "@/assets/web/barbers/booking-list/john-book.jpg";
 import Mike from "@/assets/web/barbers/booking-list/mike-book.jpg";
+import Humza from "@/assets/web/barbers/booking-list/humza-book.jpeg";
+import Lucas from "@/assets/web/barbers/booking-list/lucas-book.png";
 
 import LineBottomBorder from "@/assets/book/line-bottom-border.svg";
 import InstagramIcon from "@/assets/book/mdi_instagram.svg";
@@ -24,6 +26,8 @@ const barberImages: { [key: string]: string } = {
   JOSH: Josh,
   JOHN: John,
   MIKE: Mike,
+  HUMZA: Humza,
+  LUCAS: Lucas,
 };
 
 const BookList = () => {
