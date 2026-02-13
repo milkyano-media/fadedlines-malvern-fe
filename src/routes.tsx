@@ -102,7 +102,9 @@ const bookRoutes = [
   { path: 'rayhan/book/services', component: BookList },
   { path: 'wyatt/book/services', component: BookList },
   { path: 'noah/book/services', component: BookList },
-  { path: 'amir/book/services', component: BookList }
+  { path: 'amir/book/services', component: BookList },
+  { path: 'humza/book/services', component: BookList },
+  { path: 'lucas/book/services', component: BookList }
 ];
 
 const appointmentRoutes = [
@@ -118,7 +120,9 @@ const appointmentRoutes = [
   { path: 'rayhan/book/appointment', component: BookAppointment },
   { path: 'wyatt/book/appointment', component: BookAppointment },
   { path: 'noah/book/appointment', component: BookAppointment },
-  { path: 'amir/book/appointment', component: BookAppointment }
+  { path: 'amir/book/appointment', component: BookAppointment },
+  { path: 'humza/book/appointment', component: BookAppointment },
+  { path: 'lucas/book/appointment', component: BookAppointment }
 ];
 
 const contactInfoRoutes = [
@@ -134,7 +138,9 @@ const contactInfoRoutes = [
   { path: 'rayhan/book/contact-info', component: BookContactInfo },
   { path: 'wyatt/book/contact-info', component: BookContactInfo },
   { path: 'noah/book/contact-info', component: BookContactInfo },
-  { path: 'amir/book/contact-info', component: BookContactInfo }
+  { path: 'amir/book/contact-info', component: BookContactInfo },
+  { path: 'humza/book/contact-info', component: BookContactInfo },
+  { path: 'lucas/book/contact-info', component: BookContactInfo }
 ];
 
 const ThankYouRoutes = [
@@ -150,7 +156,9 @@ const ThankYouRoutes = [
   { path: 'rayhan/book/thank-you', component: ThankYou },
   { path: 'wyatt/book/thank-you', component: ThankYou },
   { path: 'noah/book/thank-you', component: ThankYou },
-  { path: 'amir/book/thank-you', component: ThankYou }
+  { path: 'amir/book/thank-you', component: ThankYou },
+  { path: 'humza/book/thank-you', component: ThankYou },
+  { path: 'lucas/book/thank-you', component: ThankYou }
 ];
 
 const AppRoutes: React.FC = () => {

@@ -15,10 +15,14 @@ import { useParameterValue } from "@/hooks/useParameter";
 // Preview images (for large preview)
 import Josh from "@/assets/web/barbers/josh.png";
 import Mike from "@/assets/web/barbers/mike.png";
+import Humza from "@/assets/web/barbers/humza.png";
+import Lucas from "@/assets/web/barbers/lucas.png";
 
 // Gallery images (for grid thumbnails)
 import JoshGallery from "@/assets/web/barbers/barbers-gallery/josh.png";
 import MikeGallery from "@/assets/web/barbers/barbers-gallery/mike.png";
+import HumzaGallery from "@/assets/web/barbers/barbers-gallery/humza.png";
+import LucasGallery from "@/assets/web/barbers/barbers-gallery/lucas.png";
 
 export const generateLink = (text: string, disabled: boolean = false, disabledText: string = ""): JSX.Element => {
   const customize: boolean = true;
@@ -132,6 +136,18 @@ export default function Home() {
       svg: Mike,
       thumbnail: MikeGallery,
       link: generateRoute("/mike"),
+      landing: true,
+    },
+    {
+      svg: Humza,
+      thumbnail: HumzaGallery,
+      link: generateRoute("/humza"),
+      landing: true,
+    },
+    {
+      svg: Lucas,
+      thumbnail: LucasGallery,
+      link: generateRoute("/lucas"),
       landing: true,
     },
   ];
@@ -480,13 +496,13 @@ export default function Home() {
           </div>
 
           {/* THUMBNAIL GRID (shows all barbers) */}
-          <div className="max-w-screen-md mx-auto relative px-1 md:px-0">
-            <div className="flex justify-center gap-4 md:gap-9">
+          <div className="max-w-screen-md mx-auto relative px-4 md:px-6 py-2">
+            <div className="grid grid-cols-3 gap-3 md:gap-4">
               {baseGalleryBarbers.map((barber, index) => (
                 <div
                   key={index}
                   onClick={(e) => handleThumbnailClick(index, e)}
-                  className={`w-32 h-32 md:w-48 md:h-48 overflow-hidden rounded-md md:rounded-lg transition-all duration-200 cursor-pointer relative ${
+                  className={`w-full aspect-square overflow-hidden rounded-md md:rounded-lg transition-all duration-200 cursor-pointer relative ${
                     galleryBarbers[selectedBarber]?.originalIndex === index
                       ? "ring-2 md:ring-4 ring-[#33FF00] scale-100"
                       : "hover:opacity-80 hover:scale-105"
@@ -502,9 +518,16 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Grid Pattern Divider Lines */}
-            {/* Vertical line between barbers (centered for 2 barbers) */}
-            <div className="absolute top-0 left-[50%] w-[1px] md:w-[2px] h-full bg-[#33FF00] pointer-events-none" style={{ transform: 'translateX(-0.5px)' }}></div>
+            {/* Grid Pattern Divider Lines - 3 columns */}
+            {/* First vertical line (1/3) */}
+            <div className="absolute top-0 left-[34.333%] w-[1px] md:w-[2px] h-full bg-[#33FF00] pointer-events-none" style={{ transform: 'translateX(-0.5px)' }}></div>
+            {/* Second vertical line (2/3) */}
+            <div className="absolute top-0 left-[65.666%] w-[1px] md:w-[2px] h-full bg-[#33FF00] pointer-events-none" style={{ transform: 'translateX(-0.5px)' }}></div>
+
+            {/* Horizontal line between rows (only show if more than 3 barbers) */}
+            {baseGalleryBarbers.length > 3 && (
+              <div className="absolute left-0 right-0 h-[1px] md:h-[2px] bg-[#33FF00] pointer-events-none" style={{ top: 'calc(50% - 1px)' }}></div>
+            )}
           </div>
 
         </div>
