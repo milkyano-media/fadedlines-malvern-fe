@@ -104,6 +104,8 @@ const BookList = () => {
       }
     };
 
+    const specialBarbers = ["dejan", "anthony", "christos", "wyatt", "noah"];
+
     const fetchData = async () => {
       setIsLoading(true);
       const parts = location.pathname.split("/");
@@ -126,24 +128,75 @@ const BookList = () => {
         specificBarber = barber;
       }
 
-      // Determine query for API
-      if (parts.length > 3) {
-        barber === "dejan" ||
-        barber === "anthony" ||
-        barber === "christos" ||
-        barber === "wyatt" ||
-        barber === "noah" ||
-        barber === "book"
-          ? (query = "all")
-          : (query = barber);
+      const fetchedBarbers = await getAllBarber();
+
+      if (!specificBarber) {
+        // Generic /book/services: fetch per-barber services for accurate filtering
+        const sortOrder = ["JOSH"];
+        const profiles = fetchedBarbers?.team_member_booking_profiles ?? [];
+
+        const sortedProfiles = [...profiles].sort((a, b) => {
+          const aIndex = sortOrder.findIndex((name) =>
+            a.display_name.toUpperCase().includes(name),
+          );
+          const bIndex = sortOrder.findIndex((name) =>
+            b.display_name.toUpperCase().includes(name),
+          );
+          return (aIndex !== -1 ? aIndex : 999) - (bIndex !== -1 ? bIndex : 999);
+        });
+
+        const servicesPromises = sortedProfiles.map((profile) => {
+          const barberFirstName = profile.display_name.split(" ")[0].toLowerCase();
+          const barberQuery = specialBarbers.includes(barberFirstName)
+            ? "all"
+            : barberFirstName;
+          return getAllService(barberQuery, type);
+        });
+
+        const allServicesResults = await Promise.all(servicesPromises);
+
+        const barberServicesResult: BarberServices = { data: [] };
+
+        for (let i = 0; i < sortedProfiles.length; i++) {
+          const profile = sortedProfiles[i];
+          const services = allServicesResults[i];
+          const servicesForBarber = services.objects.filter((service) =>
+            service.item_data.variations.some((variation) =>
+              variation.item_variation_data.team_member_ids?.includes(
+                profile.team_member_id,
+              ),
+            ),
+          );
+          barberServicesResult.data.push({ barber: profile, services: servicesForBarber });
+        }
+
+        setBarberServices(barberServicesResult);
+
+        if (
+          barberServicesResult.data.length === 1 &&
+          barberServicesResult.data[0].barber.team_member_id
+        ) {
+          setExpandedBarber(barberServicesResult.data[0].barber.team_member_id);
+        }
       } else {
-        query = "";
+        // Barber-specific route: existing logic
+        if (parts.length > 3) {
+          barber === "dejan" ||
+          barber === "anthony" ||
+          barber === "christos" ||
+          barber === "wyatt" ||
+          barber === "noah" ||
+          barber === "book"
+            ? (query = "all")
+            : (query = barber);
+        } else {
+          query = "";
+        }
+
+        const fetchedServices = await getAllService(query, type);
+        joinBarbersAndServices(fetchedBarbers, fetchedServices, specificBarber);
       }
 
-      const fetchedBarbers = await getAllBarber();
-      const fetchedServices = await getAllService(query, type);
-
-      joinBarbersAndServices(fetchedBarbers, fetchedServices, specificBarber);
       setIsLoading(false);
     };
 
@@ -151,12 +204,25 @@ const BookList = () => {
     fetchData();
   }, [location.pathname]);
 
-  const handleBookNowClick = async (item: ServicesItem) => {
+  const handleBookNowClick = async (item: ServicesItem, teamMemberId: string) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 100));
       localStorage.removeItem("bookedItems");
-      const updatedBookings = [item];
-      localStorage.setItem("bookedItems", JSON.stringify(updatedBookings));
+
+      // Filter to only the variation that belongs to this specific barber
+      // so BookAppointment uses the correct service_variation_id for availability
+      const barberVariations = item.item_data.variations.filter((v) =>
+        v.item_variation_data.team_member_ids?.includes(teamMemberId),
+      );
+      const itemWithCorrectVariation = {
+        ...item,
+        item_data: {
+          ...item.item_data,
+          variations: barberVariations.length > 0 ? barberVariations : item.item_data.variations,
+        },
+      };
+
+      localStorage.setItem("bookedItems", JSON.stringify([itemWithCorrectVariation]));
       const parts = location.pathname.split("/");
       const newPath = "/" + parts.slice(1, parts.length - 1).join("/");
       navigate(`${newPath}/appointment`);
@@ -392,7 +458,7 @@ const BookList = () => {
                               </p>
                             </div>
                             <BookingListButton
-                              onClick={() => handleBookNowClick(service)}
+                              onClick={() => handleBookNowClick(service, item.barber.team_member_id)}
                               className="w-full h-10 text-xs"
                             >
                               BOOK NOW
@@ -422,7 +488,7 @@ const BookList = () => {
                                   </p>
                                 </div>
                                 <BookingListButton
-                                  onClick={() => handleBookNowClick(service)}
+                                  onClick={() => handleBookNowClick(service, item.barber.team_member_id)}
                                   className="w-full md:w-52 md:h-14 md:flex-shrink-0 whitespace-nowrap"
                                 >
                                   BOOK NOW

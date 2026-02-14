@@ -17,6 +17,8 @@ import Spinner from '../web/Spinner';
 interface appointmentData {
   start_at: string;
   readable_time: string;
+  appointment_segments: Availability['appointment_segments'];
+  location_id: string;
 }
 
 interface TimeOfDay {
@@ -101,12 +103,6 @@ const BookAppointment = () => {
     const numberOfMonths = 2;
     fetchMultipleMonthsData(numberOfMonths).then((availabilities) => {
       setAvailableDates({ availabilities });
-
-      const appointmentSegment = availabilities[0]?.appointment_segments;
-      const locationId = availabilities[0]?.location_id;
-
-      localStorage.setItem('appointmentSegment', JSON.stringify(appointmentSegment));
-      localStorage.setItem('locationId', JSON.stringify(locationId));
     });
   }, [bookedItems]);
 
@@ -209,7 +205,9 @@ const BookAppointment = () => {
       timesOfDay[timeOfDayIndex].appointments.push(
         {
           start_at: appointment.start_at,
-          readable_time: readableTime
+          readable_time: readableTime,
+          appointment_segments: appointment.appointment_segments,
+          location_id: appointment.location_id,
         }
       );
     });
@@ -299,6 +297,8 @@ const BookAppointment = () => {
                                 onClick={() => {
                                   localStorage.setItem('appointmentStartAt', appointment.start_at);
                                   localStorage.setItem('selectedAppointment', appointment.readable_time);
+                                  localStorage.setItem('appointmentSegment', JSON.stringify(appointment.appointment_segments));
+                                  localStorage.setItem('locationId', JSON.stringify(appointment.location_id));
                                   navigate(generateRoute("book/contact-info"));
                                 }}
                               >
