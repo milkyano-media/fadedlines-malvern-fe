@@ -144,12 +144,13 @@ export default function Home() {
       link: generateRoute("/humza"),
       landing: true,
     },
-    {
-      svg: Lucas,
-      thumbnail: LucasGallery,
-      link: generateRoute("/lucas"),
-      landing: true,
-    },
+    // HIDDEN: Lucas temporarily hidden
+    // {
+    //   svg: Lucas,
+    //   thumbnail: LucasGallery,
+    //   link: generateRoute("/lucas"),
+    //   landing: true,
+    // },
   ];
 
   // Transform barberSvgs into gallery-friendly format
