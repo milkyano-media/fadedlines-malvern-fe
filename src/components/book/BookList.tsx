@@ -17,17 +17,19 @@ import Josh from "@/assets/web/barbers/booking-list/josh-book.jpeg";
 import John from "@/assets/web/barbers/booking-list/john-book.jpg";
 import Mike from "@/assets/web/barbers/booking-list/mike-book.jpg";
 import Humza from "@/assets/web/barbers/booking-list/humza-book.jpeg";
-import Lucas from "@/assets/web/barbers/booking-list/lucas-book.png";
+// import Lucas from "@/assets/web/barbers/booking-list/lucas-book.png"; // HIDDEN temporarily
 
 import LineBottomBorder from "@/assets/book/line-bottom-border.svg";
 import InstagramIcon from "@/assets/book/mdi_instagram.svg";
+
+const HIDDEN_BARBERS = ["LUCAS"]; // Temporarily hidden
 
 const barberImages: { [key: string]: string } = {
   JOSH: Josh,
   JOHN: John,
   MIKE: Mike,
   HUMZA: Humza,
-  LUCAS: Lucas,
+  // HIDDEN: LUCAS: Lucas,
 };
 
 const BookList = () => {
@@ -53,7 +55,15 @@ const BookList = () => {
       // 1. Use all available profiles
       let sortedProfiles = barbers?.team_member_booking_profiles ?? [];
 
-      // 2. Filter for a specific barber if provided
+      // 2. Filter out hidden barbers
+      sortedProfiles = sortedProfiles.filter(
+        (profile) =>
+          !HIDDEN_BARBERS.some((hidden) =>
+            profile.display_name.toUpperCase().includes(hidden),
+          ),
+      );
+
+      // 3. Filter for a specific barber if provided
       if (specificBarber && specificBarber !== "book") {
         sortedProfiles = sortedProfiles.filter((profile) =>
           profile.display_name
@@ -62,7 +72,7 @@ const BookList = () => {
         );
       }
 
-      // 3. Sort based on predefined sortOrder, unknowns go to bottom
+      // 4. Sort based on predefined sortOrder, unknowns go to bottom
       sortedProfiles = sortedProfiles.sort((a, b) => {
         const aIndex = sortOrder.findIndex((name) =>
           a.display_name.toUpperCase().includes(name),
@@ -75,7 +85,7 @@ const BookList = () => {
         return aSort - bSort;
       });
 
-      // 4. Match services with each barber
+      // 5. Match services with each barber
       if (sortedProfiles && services) {
         for (let i = 0; i < sortedProfiles.length; i++) {
           const servicesForBarber = services.objects.filter((service) =>
@@ -133,7 +143,12 @@ const BookList = () => {
       if (!specificBarber) {
         // Generic /book/services: fetch per-barber services for accurate filtering
         const sortOrder = ["JOSH"];
-        const profiles = fetchedBarbers?.team_member_booking_profiles ?? [];
+        const profiles = (fetchedBarbers?.team_member_booking_profiles ?? []).filter(
+          (profile) =>
+            !HIDDEN_BARBERS.some((hidden) =>
+              profile.display_name.toUpperCase().includes(hidden),
+            ),
+        );
 
         const sortedProfiles = [...profiles].sort((a, b) => {
           const aIndex = sortOrder.findIndex((name) =>
