@@ -204,12 +204,25 @@ const BookList = () => {
     fetchData();
   }, [location.pathname]);
 
-  const handleBookNowClick = async (item: ServicesItem) => {
+  const handleBookNowClick = async (item: ServicesItem, teamMemberId: string) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 100));
       localStorage.removeItem("bookedItems");
-      const updatedBookings = [item];
-      localStorage.setItem("bookedItems", JSON.stringify(updatedBookings));
+
+      // Filter to only the variation that belongs to this specific barber
+      // so BookAppointment uses the correct service_variation_id for availability
+      const barberVariations = item.item_data.variations.filter((v) =>
+        v.item_variation_data.team_member_ids?.includes(teamMemberId),
+      );
+      const itemWithCorrectVariation = {
+        ...item,
+        item_data: {
+          ...item.item_data,
+          variations: barberVariations.length > 0 ? barberVariations : item.item_data.variations,
+        },
+      };
+
+      localStorage.setItem("bookedItems", JSON.stringify([itemWithCorrectVariation]));
       const parts = location.pathname.split("/");
       const newPath = "/" + parts.slice(1, parts.length - 1).join("/");
       navigate(`${newPath}/appointment`);
@@ -445,7 +458,7 @@ const BookList = () => {
                               </p>
                             </div>
                             <BookingListButton
-                              onClick={() => handleBookNowClick(service)}
+                              onClick={() => handleBookNowClick(service, item.barber.team_member_id)}
                               className="w-full h-10 text-xs"
                             >
                               BOOK NOW
@@ -475,7 +488,7 @@ const BookList = () => {
                                   </p>
                                 </div>
                                 <BookingListButton
-                                  onClick={() => handleBookNowClick(service)}
+                                  onClick={() => handleBookNowClick(service, item.barber.team_member_id)}
                                   className="w-full md:w-52 md:h-14 md:flex-shrink-0 whitespace-nowrap"
                                 >
                                   BOOK NOW
