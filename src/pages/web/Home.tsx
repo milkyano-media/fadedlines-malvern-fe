@@ -16,13 +16,13 @@ import { useParameterValue } from "@/hooks/useParameter";
 import Josh from "@/assets/web/barbers/josh.png";
 import Mike from "@/assets/web/barbers/mike.png";
 import Humza from "@/assets/web/barbers/humza.png";
-import Lucas from "@/assets/web/barbers/lucas.png";
+// import Lucas from "@/assets/web/barbers/lucas.png"; // HIDDEN temporarily
 
 // Gallery images (for grid thumbnails)
 import JoshGallery from "@/assets/web/barbers/barbers-gallery/josh.png";
 import MikeGallery from "@/assets/web/barbers/barbers-gallery/mike.png";
 import HumzaGallery from "@/assets/web/barbers/barbers-gallery/humza.png";
-import LucasGallery from "@/assets/web/barbers/barbers-gallery/lucas.png";
+// import LucasGallery from "@/assets/web/barbers/barbers-gallery/lucas.png"; // HIDDEN temporarily
 
 export const generateLink = (text: string, disabled: boolean = false, disabledText: string = ""): JSX.Element => {
   const customize: boolean = true;
