@@ -104,6 +104,7 @@ const bookRoutes = [
   { path: 'noah/book/services', component: BookList },
   { path: 'amir/book/services', component: BookList },
   { path: 'humza/book/services', component: BookList },
+  { path: 'liem/book/services', component: BookList },
   { path: 'lucas/book/services', component: BookList }
 ];
 
@@ -122,6 +123,7 @@ const appointmentRoutes = [
   { path: 'noah/book/appointment', component: BookAppointment },
   { path: 'amir/book/appointment', component: BookAppointment },
   { path: 'humza/book/appointment', component: BookAppointment },
+  { path: 'liem/book/appointment', component: BookAppointment },
   { path: 'lucas/book/appointment', component: BookAppointment }
 ];
 
@@ -140,6 +142,7 @@ const contactInfoRoutes = [
   { path: 'noah/book/contact-info', component: BookContactInfo },
   { path: 'amir/book/contact-info', component: BookContactInfo },
   { path: 'humza/book/contact-info', component: BookContactInfo },
+  { path: 'liem/book/contact-info', component: BookContactInfo },
   { path: 'lucas/book/contact-info', component: BookContactInfo }
 ];
 
@@ -158,6 +161,7 @@ const ThankYouRoutes = [
   { path: 'noah/book/thank-you', component: ThankYou },
   { path: 'amir/book/thank-you', component: ThankYou },
   { path: 'humza/book/thank-you', component: ThankYou },
+  { path: 'liem/book/thank-you', component: ThankYou },
   { path: 'lucas/book/thank-you', component: ThankYou }
 ];
 

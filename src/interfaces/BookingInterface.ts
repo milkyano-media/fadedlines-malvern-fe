@@ -138,7 +138,8 @@ interface BusinessBookingProfileResponse {
 interface AvailabilityRequest {
   service_variation_id: string,
   start_at: string,
-  end_at: string
+  end_at: string,
+  team_member_id?: string
 }
 
 interface AvailabilityQuery {

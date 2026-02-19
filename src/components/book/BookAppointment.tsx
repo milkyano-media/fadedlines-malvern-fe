@@ -11,7 +11,7 @@ import { format } from "date-fns";
 import moment from 'moment-timezone';
 import { useNavigate } from "react-router-dom";
 import { getAvailability } from '@/utils/barberApi';
-import { Availability, AvailabilityResponse, ServicesItem } from '@/interfaces/BookingInterface';
+import { Availability, AvailabilityRequest, AvailabilityResponse, ServicesItem } from '@/interfaces/BookingInterface';
 import Spinner from '../web/Spinner';
 
 interface appointmentData {
@@ -85,11 +85,15 @@ const BookAppointment = () => {
           endAt.setDate(endAt.getDate() + 30);
         }
 
-        const requestBody = {
-          "service_variation_id": bookedItems[0].item_data.variations[0].id,
-          "start_at": moment.tz(startAt, "Australia/Sydney").format(),
-          "end_at": moment.tz(endAt, "Australia/Sydney").format()
+        const teamMemberId = localStorage.getItem("bookedTeamMemberId");
+        const requestBody: AvailabilityRequest = {
+          service_variation_id: bookedItems[0].item_data.variations[0].id,
+          start_at: moment.tz(startAt, "Australia/Sydney").format(),
+          end_at: moment.tz(endAt, "Australia/Sydney").format()
         };
+        if (teamMemberId) {
+          requestBody.team_member_id = teamMemberId;
+        }
 
         const response = await getAvailability(requestBody);
         allAvailabilities.push(...response.availabilities);

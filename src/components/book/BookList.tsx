@@ -17,6 +17,7 @@ import Josh from "@/assets/web/barbers/booking-list/josh-book.jpeg";
 import John from "@/assets/web/barbers/booking-list/john-book.jpg";
 import Mike from "@/assets/web/barbers/booking-list/mike-book.jpg";
 import Humza from "@/assets/web/barbers/booking-list/humza-book.jpeg";
+import Liem from "@/assets/web/barbers/booking-list/liem-book.jpeg";
 // import Lucas from "@/assets/web/barbers/booking-list/lucas-book.png"; // HIDDEN temporarily
 
 import LineBottomBorder from "@/assets/book/line-bottom-border.svg";
@@ -29,6 +30,7 @@ const barberImages: { [key: string]: string } = {
   JOHN: John,
   MIKE: Mike,
   HUMZA: Humza,
+  LIEM: Liem,
   // HIDDEN: LUCAS: Lucas,
 };
 
@@ -238,6 +240,7 @@ const BookList = () => {
       };
 
       localStorage.setItem("bookedItems", JSON.stringify([itemWithCorrectVariation]));
+      localStorage.setItem("bookedTeamMemberId", teamMemberId);
       const parts = location.pathname.split("/");
       const newPath = "/" + parts.slice(1, parts.length - 1).join("/");
       navigate(`${newPath}/appointment`);
