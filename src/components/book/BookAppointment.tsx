@@ -85,11 +85,15 @@ const BookAppointment = () => {
           endAt.setDate(endAt.getDate() + 30);
         }
 
-        const requestBody = {
+        const teamMemberId = localStorage.getItem("bookedTeamMemberId");
+        const requestBody: Record<string, string> = {
           "service_variation_id": bookedItems[0].item_data.variations[0].id,
           "start_at": moment.tz(startAt, "Australia/Sydney").format(),
           "end_at": moment.tz(endAt, "Australia/Sydney").format()
         };
+        if (teamMemberId) {
+          requestBody["team_member_id"] = teamMemberId;
+        }
 
         const response = await getAvailability(requestBody);
         allAvailabilities.push(...response.availabilities);
