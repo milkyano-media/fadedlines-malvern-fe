@@ -23,7 +23,7 @@ import Liem from "@/assets/web/barbers/booking-list/liem-book.jpeg";
 import LineBottomBorder from "@/assets/book/line-bottom-border.svg";
 import InstagramIcon from "@/assets/book/mdi_instagram.svg";
 
-const HIDDEN_BARBERS = ["LUCAS"]; // Temporarily hidden
+const HIDDEN_BARBERS = ["LUCAS", "MIKE"]; // Temporarily hidden
 
 const barberImages: { [key: string]: string } = {
   JOSH: Josh,
