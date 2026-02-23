@@ -14,14 +14,14 @@ import { useParameterValue } from "@/hooks/useParameter";
 
 // Preview images (for large preview)
 import Josh from "@/assets/web/barbers/josh.png";
-import Mike from "@/assets/web/barbers/mike.png";
+// import Mike from "@/assets/web/barbers/mike.png"; // HIDDEN temporarily
 import Humza from "@/assets/web/barbers/humza.png";
 import Liem from "@/assets/web/barbers/liem.png";
 // import Lucas from "@/assets/web/barbers/lucas.png"; // HIDDEN temporarily
 
 // Gallery images (for grid thumbnails)
 import JoshGallery from "@/assets/web/barbers/barbers-gallery/josh.png";
-import MikeGallery from "@/assets/web/barbers/barbers-gallery/mike.png";
+// import MikeGallery from "@/assets/web/barbers/barbers-gallery/mike.png"; // HIDDEN temporarily
 import HumzaGallery from "@/assets/web/barbers/barbers-gallery/humza.png";
 import LiemGallery from "@/assets/web/barbers/barbers-gallery/liem.png";
 // import LucasGallery from "@/assets/web/barbers/barbers-gallery/lucas.png"; // HIDDEN temporarily
@@ -134,12 +134,13 @@ export default function Home() {
       link: generateRoute("/josh"),
       landing: true,
     },
-    {
-      svg: Mike,
-      thumbnail: MikeGallery,
-      link: generateRoute("/mike"),
-      landing: true,
-    },
+    // HIDDEN: Mike temporarily hidden
+    // {
+    //   svg: Mike,
+    //   thumbnail: MikeGallery,
+    //   link: generateRoute("/mike"),
+    //   landing: true,
+    // },
     {
       svg: Humza,
       thumbnail: HumzaGallery,
