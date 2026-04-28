@@ -17,6 +17,7 @@ import Josh from "@/assets/web/barbers/josh.png";
 // import Mike from "@/assets/web/barbers/mike.png"; // HIDDEN temporarily
 import Humza from "@/assets/web/barbers/humza.png";
 import Liem from "@/assets/web/barbers/liem.png";
+import Roland from "@/assets/web/barbers/roland.png";
 // import Lucas from "@/assets/web/barbers/lucas.png"; // HIDDEN temporarily
 
 // Gallery images (for grid thumbnails)
@@ -24,6 +25,7 @@ import JoshGallery from "@/assets/web/barbers/barbers-gallery/josh.png";
 // import MikeGallery from "@/assets/web/barbers/barbers-gallery/mike.png"; // HIDDEN temporarily
 import HumzaGallery from "@/assets/web/barbers/barbers-gallery/humza.png";
 import LiemGallery from "@/assets/web/barbers/barbers-gallery/liem.png";
+import RolandGallery from "@/assets/web/barbers/barbers-gallery/roland.png";
 // import LucasGallery from "@/assets/web/barbers/barbers-gallery/lucas.png"; // HIDDEN temporarily
 
 export const generateLink = (text: string, disabled: boolean = false, disabledText: string = ""): JSX.Element => {
@@ -151,6 +153,12 @@ export default function Home() {
       svg: Liem,
       thumbnail: LiemGallery,
       link: generateRoute("/liem"),
+      landing: true,
+    },
+    {
+      svg: Roland,
+      thumbnail: RolandGallery,
+      link: generateRoute("/roland"),
       landing: true,
     },
     // HIDDEN: Lucas temporarily hidden
