@@ -18,6 +18,7 @@ import John from "@/assets/web/barbers/booking-list/john-book.jpg";
 import Mike from "@/assets/web/barbers/booking-list/mike-book.jpg";
 import Humza from "@/assets/web/barbers/booking-list/humza-book.jpeg";
 import Liem from "@/assets/web/barbers/booking-list/liem-book.jpeg";
+import Roland from "@/assets/web/barbers/booking-list/roland-book.png";
 // import Lucas from "@/assets/web/barbers/booking-list/lucas-book.png"; // HIDDEN temporarily
 
 import LineBottomBorder from "@/assets/book/line-bottom-border.svg";
@@ -31,6 +32,7 @@ const barberImages: { [key: string]: string } = {
   MIKE: Mike,
   HUMZA: Humza,
   LIEM: Liem,
+  ROLAND: Roland,
   // HIDDEN: LUCAS: Lucas,
 };
 
@@ -354,12 +356,9 @@ const BookList = () => {
                                 })()}
                               </p>
                             </div>
-                            {(item.barber.display_name.includes("(Available Now)") ||
-                              item.barber.display_name.includes("(AvailableNow)")) && (
-                              <span className="text-xs text-[#00FF00] border border-[#00FF00] px-2 py-1 rounded-full">
-                                Available Now
-                              </span>
-                            )}
+                            <span className="text-xs text-[#00FF00] border border-[#00FF00] px-2 py-1 rounded-full">
+                              Available Now
+                            </span>
                           </div>
                         </div>
                         </div>
@@ -410,12 +409,9 @@ const BookList = () => {
                                   })()}
                                 </p>
                               </div>
-                              {(item.barber.display_name.includes("(Available Now)") ||
-                                item.barber.display_name.includes("(AvailableNow)")) && (
-                                <span className="text-xs text-[#00FF00] border border-[#00FF00] px-2 py-1 rounded-full">
-                                  Available Now
-                                </span>
-                              )}
+                              <span className="text-xs text-[#00FF00] border border-[#00FF00] px-2 py-1 rounded-full">
+                                Available Now
+                              </span>
                             </div>
                           </div>
                         </div>
