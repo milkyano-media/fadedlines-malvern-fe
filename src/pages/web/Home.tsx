@@ -20,6 +20,7 @@ import Josh from "@/assets/web/barbers/josh.png";
 import Humza from "@/assets/web/barbers/humza.png";
 import Liem from "@/assets/web/barbers/liem.png";
 import Roland from "@/assets/web/barbers/roland.png";
+import Nathan from "@/assets/web/barbers/nathan.png";
 // import Lucas from "@/assets/web/barbers/lucas.png"; // HIDDEN temporarily
 
 // Gallery images (for grid thumbnails)
@@ -28,6 +29,7 @@ import JoshGallery from "@/assets/web/barbers/barbers-gallery/josh.png";
 import HumzaGallery from "@/assets/web/barbers/barbers-gallery/humza.png";
 import LiemGallery from "@/assets/web/barbers/barbers-gallery/liem.png";
 import RolandGallery from "@/assets/web/barbers/barbers-gallery/roland.png";
+import NathanGallery from "@/assets/web/barbers/barbers-gallery/nathan.png";
 // import LucasGallery from "@/assets/web/barbers/barbers-gallery/lucas.png"; // HIDDEN temporarily
 
 export const generateLink = (text: string, disabled: boolean = false, disabledText: string = ""): JSX.Element => {
@@ -169,6 +171,13 @@ export default function Home() {
       landing: true,
       slug: "roland",
     },
+    {
+      svg: Nathan,
+      thumbnail: NathanGallery,
+      link: generateRoute("/nathan"),
+      landing: true,
+      slug: "nathan",
+    },
     // HIDDEN: Lucas temporarily hidden
     // {
     //   svg: Lucas,
@@ -219,6 +228,7 @@ export default function Home() {
       humza: ["HUMZA"],
       liem: ["LIEM"],
       roland: ["ROLAND"],
+      nathan: ["NATHAN"],
     };
 
     const fetchPrices = async () => {
@@ -597,7 +607,7 @@ export default function Home() {
                     galleryBarbers[selectedBarber]?.originalIndex === index
                       ? "scale-100"
                       : "hover:scale-105"
-                  } ${index === 3 ? 'col-start-2' : ''}`}
+                  }`}
                 >
                   <div className={`w-full h-full overflow-hidden rounded-md md:rounded-lg ${
                     galleryBarbers[selectedBarber]?.originalIndex === index
