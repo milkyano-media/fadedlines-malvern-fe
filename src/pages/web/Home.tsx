@@ -11,6 +11,8 @@ import Maps from "@/assets/web/icons/Maps.svg";
 import GoogleReview from "@/assets/web/icons/GoogleReview.svg";
 import useEmblaCarousel from "embla-carousel-react";
 import { useParameterValue } from "@/hooks/useParameter";
+import { getAllBarber, getAllService } from "@/utils/barberApi";
+import { BarberResponse, ServicesResponse, ServicesItem } from "@/interfaces/BookingInterface";
 
 // Preview images (for large preview)
 import Josh from "@/assets/web/barbers/josh.png";
@@ -69,6 +71,7 @@ export default function Home() {
 
   // Gallery state management
   const [selectedBarber, setSelectedBarber] = useState(0);
+  const [barberMinPrices, setBarberMinPrices] = useState<Record<string, number>>({});
   const previewImageRef = useRef<HTMLDivElement>(null);
   const bookNowButtonRef = useRef<HTMLDivElement>(null);
 
@@ -135,6 +138,7 @@ export default function Home() {
       thumbnail: JoshGallery,
       link: generateRoute("/josh"),
       landing: true,
+      slug: "josh",
     },
     // HIDDEN: Mike temporarily hidden
     // {
@@ -142,24 +146,28 @@ export default function Home() {
     //   thumbnail: MikeGallery,
     //   link: generateRoute("/mike"),
     //   landing: true,
+    //   slug: "mike",
     // },
     {
       svg: Humza,
       thumbnail: HumzaGallery,
       link: generateRoute("/humza"),
       landing: true,
+      slug: "humza",
     },
     {
       svg: Liem,
       thumbnail: LiemGallery,
       link: generateRoute("/liem"),
       landing: true,
+      slug: "liem",
     },
     {
       svg: Roland,
       thumbnail: RolandGallery,
       link: generateRoute("/roland"),
       landing: true,
+      slug: "roland",
     },
     // HIDDEN: Lucas temporarily hidden
     // {
@@ -167,6 +175,7 @@ export default function Home() {
     //   thumbnail: LucasGallery,
     //   link: generateRoute("/lucas"),
     //   landing: true,
+    //   slug: "lucas",
     // },
   ];
 
@@ -177,6 +186,7 @@ export default function Home() {
     name: barber.link.split('/').pop()?.toUpperCase() || `BARBER ${index + 1}`,
     link: barber.link,
     landing: barber.landing,
+    slug: barber.slug,
     originalIndex: index, // Track original index for selection
   }));
 
@@ -202,6 +212,57 @@ export default function Home() {
       emblaApi.off('select', onSelect);
     };
   }, [emblaApi, onSelect]);
+
+  useEffect(() => {
+    const barberAliases: Record<string, string[]> = {
+      josh: ["JOSH"],
+      humza: ["HUMZA"],
+      liem: ["LIEM"],
+      roland: ["ROLAND"],
+    };
+
+    const fetchPrices = async () => {
+      try {
+        const [fetchedBarbers, fetchedServices]: [BarberResponse, ServicesResponse] = await Promise.all([
+          getAllBarber(),
+          getAllService(),
+        ]);
+
+        const prices: Record<string, number> = {};
+
+        for (const [slug, aliases] of Object.entries(barberAliases)) {
+          const barberProfile = fetchedBarbers?.team_member_booking_profiles?.find((p) =>
+            aliases.some((a) => p.display_name.toUpperCase().includes(a))
+          );
+
+          if (!barberProfile) continue;
+
+          const services: ServicesItem[] = fetchedServices?.objects?.filter((service) => {
+            const serviceName = service.item_data.name.toUpperCase();
+            const nameMatch = aliases.some((a) => serviceName.includes(`BY ${a}`));
+            const idMatch = service.item_data.variations.some((v) =>
+              v.item_variation_data.team_member_ids?.includes(barberProfile.team_member_id)
+            );
+            return nameMatch && idMatch;
+          }) ?? [];
+
+          const servicePrices = services
+            .map((s) => s.item_data.variations[0].item_variation_data.price_money.amount)
+            .filter((p) => p > 0);
+
+          if (servicePrices.length > 0) {
+            prices[slug] = Math.min(...servicePrices) / 100;
+          }
+        }
+
+        setBarberMinPrices(prices);
+      } catch {
+        // silently fail — badge just won't show
+      }
+    };
+
+    fetchPrices();
+  }, []);
 
   // Handler for hero Book Now button - scroll to gallery Book Now
   const handleHeroBookNowClick = () => {
@@ -515,28 +576,8 @@ export default function Home() {
 
           {/* THUMBNAIL GRID (shows all barbers) */}
           <div className="max-w-screen-md mx-auto relative px-4 md:px-6 py-2">
-            <div className="grid grid-cols-3 gap-3 md:gap-4">
-              {baseGalleryBarbers.map((barber, index) => (
-                <div
-                  key={index}
-                  onClick={(e) => handleThumbnailClick(index, e)}
-                  className={`w-full aspect-square overflow-hidden rounded-md md:rounded-lg transition-all duration-200 cursor-pointer relative ${
-                    galleryBarbers[selectedBarber]?.originalIndex === index
-                      ? "ring-2 md:ring-4 ring-[#33FF00] scale-100"
-                      : "hover:opacity-80 hover:scale-105"
-                  } ${index === 3 ? 'col-start-2' : ''}`}
-                >
-                <img
-                  src={barber.thumbnail}
-                  alt={barber.name}
-                  className="w-full h-full object-cover pointer-events-none"
-                  loading="lazy"
-                />
-              </div>
-              ))}
-            </div>
 
-            {/* Grid Pattern Divider Lines - 3 columns */}
+            {/* Grid Pattern Divider Lines — rendered FIRST so grid cells paint on top */}
             {/* First vertical line (1/3) */}
             <div className="absolute top-0 left-[34.333%] w-[1px] md:w-[2px] h-full bg-[#33FF00] pointer-events-none" style={{ transform: 'translateX(-0.5px)' }}></div>
             {/* Second vertical line (2/3) */}
@@ -546,6 +587,44 @@ export default function Home() {
             {baseGalleryBarbers.length > 3 && (
               <div className="absolute left-0 right-0 h-[1px] md:h-[2px] bg-[#33FF00] pointer-events-none" style={{ top: 'calc(50% - 1px)' }}></div>
             )}
+
+            <div className="grid grid-cols-3 gap-x-3 gap-y-7 md:gap-x-4 md:gap-y-10">
+              {baseGalleryBarbers.map((barber, index) => (
+                <div
+                  key={index}
+                  onClick={(e) => handleThumbnailClick(index, e)}
+                  className={`w-full aspect-square cursor-pointer relative transition-all duration-200 ${
+                    galleryBarbers[selectedBarber]?.originalIndex === index
+                      ? "scale-100"
+                      : "hover:scale-105"
+                  } ${index === 3 ? 'col-start-2' : ''}`}
+                >
+                  <div className={`w-full h-full overflow-hidden rounded-md md:rounded-lg ${
+                    galleryBarbers[selectedBarber]?.originalIndex === index
+                      ? "ring-2 md:ring-4 ring-[#33FF00] opacity-100"
+                      : "hover:opacity-80"
+                  }`}>
+                    <img
+                      src={barber.thumbnail}
+                      alt={barber.name}
+                      className="w-full h-full object-cover pointer-events-none"
+                      loading="lazy"
+                    />
+                  </div>
+                  {barberMinPrices[barber.slug] !== undefined && (
+                    <span
+                      className={`absolute -top-3 z-10 bg-black/75 text-lime text-xs md:text-sm font-bold px-2 md:px-3 py-1 md:py-1.5 rounded-lg border border-lime/50 backdrop-blur-sm tracking-wide pointer-events-none shadow-md shadow-black/60 ${
+                        Math.floor(index / 3) % 2 === 0 ? "-left-2.5" : "-right-2.5"
+                      }`}
+                    >
+                      ${barberMinPrices[barber.slug] % 1 === 0
+                        ? barberMinPrices[barber.slug]
+                        : barberMinPrices[barber.slug].toFixed(2)}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>

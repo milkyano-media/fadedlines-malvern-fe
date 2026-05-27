@@ -51,6 +51,7 @@ module.exports = {
                     DEFAULT: "hsl(var(--card))",
                     foreground: "hsl(var(--card-foreground))",
                 },
+                lime: "#33FF00",
                 // Parameter-based theme colors
                 "theme-primary": "var(--primary-color)",
                 "theme-secondary": "var(--secondary-color)",
