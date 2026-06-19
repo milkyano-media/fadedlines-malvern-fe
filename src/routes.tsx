@@ -107,7 +107,8 @@ const bookRoutes = [
   { path: 'liem/book/services', component: BookList },
   { path: 'lucas/book/services', component: BookList },
   { path: 'roland/book/services', component: BookList },
-  { path: 'nathan/book/services', component: BookList }
+  { path: 'nathan/book/services', component: BookList },
+  { path: 'simon/book/services', component: BookList }
 ];
 
 const appointmentRoutes = [
@@ -128,7 +129,8 @@ const appointmentRoutes = [
   { path: 'liem/book/appointment', component: BookAppointment },
   { path: 'lucas/book/appointment', component: BookAppointment },
   { path: 'roland/book/appointment', component: BookAppointment },
-  { path: 'nathan/book/appointment', component: BookAppointment }
+  { path: 'nathan/book/appointment', component: BookAppointment },
+  { path: 'simon/book/appointment', component: BookAppointment }
 ];
 
 const contactInfoRoutes = [
@@ -149,7 +151,8 @@ const contactInfoRoutes = [
   { path: 'liem/book/contact-info', component: BookContactInfo },
   { path: 'lucas/book/contact-info', component: BookContactInfo },
   { path: 'roland/book/contact-info', component: BookContactInfo },
-  { path: 'nathan/book/contact-info', component: BookContactInfo }
+  { path: 'nathan/book/contact-info', component: BookContactInfo },
+  { path: 'simon/book/contact-info', component: BookContactInfo }
 ];
 
 const ThankYouRoutes = [
@@ -170,7 +173,8 @@ const ThankYouRoutes = [
   { path: 'liem/book/thank-you', component: ThankYou },
   { path: 'lucas/book/thank-you', component: ThankYou },
   { path: 'roland/book/thank-you', component: ThankYou },
-  { path: 'nathan/book/thank-you', component: ThankYou }
+  { path: 'nathan/book/thank-you', component: ThankYou },
+  { path: 'simon/book/thank-you', component: ThankYou }
 ];
 
 const AppRoutes: React.FC = () => {

@@ -21,6 +21,7 @@ import Humza from "@/assets/web/barbers/humza.png";
 import Liem from "@/assets/web/barbers/liem.png";
 import Roland from "@/assets/web/barbers/roland.png";
 import Nathan from "@/assets/web/barbers/nathan.png";
+import Simon from "@/assets/web/barbers/simon.png";
 // import Lucas from "@/assets/web/barbers/lucas.png"; // HIDDEN temporarily
 
 // Gallery images (for grid thumbnails)
@@ -30,6 +31,7 @@ import HumzaGallery from "@/assets/web/barbers/barbers-gallery/humza.png";
 import LiemGallery from "@/assets/web/barbers/barbers-gallery/liem.png";
 import RolandGallery from "@/assets/web/barbers/barbers-gallery/roland.png";
 import NathanGallery from "@/assets/web/barbers/barbers-gallery/nathan.png";
+import SimonGallery from "@/assets/web/barbers/barbers-gallery/simon.png";
 // import LucasGallery from "@/assets/web/barbers/barbers-gallery/lucas.png"; // HIDDEN temporarily
 
 export const generateLink = (text: string, disabled: boolean = false, disabledText: string = ""): JSX.Element => {
@@ -178,6 +180,13 @@ export default function Home() {
       landing: true,
       slug: "nathan",
     },
+    {
+      svg: Simon,
+      thumbnail: SimonGallery,
+      link: generateRoute("/simon"),
+      landing: true,
+      slug: "simon",
+    },
     // HIDDEN: Lucas temporarily hidden
     // {
     //   svg: Lucas,
@@ -229,6 +238,7 @@ export default function Home() {
       liem: ["LIEM"],
       roland: ["ROLAND"],
       nathan: ["NATHAN"],
+      simon: ["SIMON"],
     };
 
     const fetchPrices = async () => {
