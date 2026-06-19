@@ -40,6 +40,11 @@ const barberImages: { [key: string]: string } = {
   // HIDDEN: LUCAS: Lucas,
 };
 
+// Fallback IG handles for barbers whose Square display_name doesn't embed one
+const barberInstagramFallback: { [key: string]: string } = {
+  SIMON: "@simon.blendz",
+};
+
 const BookList = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -269,6 +274,16 @@ const BookList = () => {
     return null;
   };
 
+  const getBarberInstagram = (displayName: string): string => {
+    const fromName = displayName.match(/@[^\s(]+/)?.[0];
+    if (fromName) return fromName;
+    const upperName = displayName.toUpperCase();
+    for (const [key, value] of Object.entries(barberInstagramFallback)) {
+      if (upperName.includes(key)) return value;
+    }
+    return "";
+  };
+
   const extractPriceRange = (services: ServicesItem[]) => {
     const prices = services
       .map((service) => {
@@ -352,12 +367,7 @@ const BookList = () => {
                                 className="w-[14px] h-[14px]"
                               />
                               <p className="text-[13px] font-medium font-inter text-white/90">
-                                {(() => {
-                                  const ig =
-                                    item.barber.display_name
-                                      .match(/@[^\s(]+/)?.[0] || "";
-                                  return ig;
-                                })()}
+                                {getBarberInstagram(item.barber.display_name)}
                               </p>
                             </div>
                             <span className="text-xs text-[#00FF00] border border-[#00FF00] px-2 py-1 rounded-full">
@@ -405,12 +415,7 @@ const BookList = () => {
                                   className="w-[14px] h-[14px]"
                                 />
                                 <p className="text-[13px] font-medium font-inter text-white/90">
-                                  {(() => {
-                                    const ig =
-                                      item.barber.display_name
-                                        .match(/@[^\s(]+/)?.[0] || "";
-                                    return ig;
-                                  })()}
+                                  {getBarberInstagram(item.barber.display_name)}
                                 </p>
                               </div>
                               <span className="text-xs text-[#00FF00] border border-[#00FF00] px-2 py-1 rounded-full">
