@@ -43,6 +43,7 @@ const barberImages: { [key: string]: string } = {
 // Fallback IG handles for barbers whose Square display_name doesn't embed one
 const barberInstagramFallback: { [key: string]: string } = {
   SIMON: "@simon.blendz",
+  NATHAN: "@gomothebarber",
 };
 
 const BookList = () => {
