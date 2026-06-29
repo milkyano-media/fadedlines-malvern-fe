@@ -20,7 +20,7 @@ import Josh from "@/assets/web/barbers/josh.png";
 import Humza from "@/assets/web/barbers/humza.png";
 import Liem from "@/assets/web/barbers/liem.png";
 import Roland from "@/assets/web/barbers/roland.png";
-import Nathan from "@/assets/web/barbers/nathan.png";
+// import Nathan from "@/assets/web/barbers/nathan.png"; // HIDDEN temporarily
 import Simon from "@/assets/web/barbers/simon.png";
 // import Lucas from "@/assets/web/barbers/lucas.png"; // HIDDEN temporarily
 
@@ -30,7 +30,7 @@ import JoshGallery from "@/assets/web/barbers/barbers-gallery/josh.png";
 import HumzaGallery from "@/assets/web/barbers/barbers-gallery/humza.png";
 import LiemGallery from "@/assets/web/barbers/barbers-gallery/liem.png";
 import RolandGallery from "@/assets/web/barbers/barbers-gallery/roland.png";
-import NathanGallery from "@/assets/web/barbers/barbers-gallery/nathan.png";
+// import NathanGallery from "@/assets/web/barbers/barbers-gallery/nathan.png"; // HIDDEN temporarily
 import SimonGallery from "@/assets/web/barbers/barbers-gallery/simon.png";
 // import LucasGallery from "@/assets/web/barbers/barbers-gallery/lucas.png"; // HIDDEN temporarily
 
@@ -173,13 +173,14 @@ export default function Home() {
       landing: true,
       slug: "roland",
     },
-    {
-      svg: Nathan,
-      thumbnail: NathanGallery,
-      link: generateRoute("/nathan"),
-      landing: true,
-      slug: "nathan",
-    },
+    // HIDDEN: Nathan temporarily hidden
+    // {
+    //   svg: Nathan,
+    //   thumbnail: NathanGallery,
+    //   link: generateRoute("/nathan"),
+    //   landing: true,
+    //   slug: "nathan",
+    // },
     {
       svg: Simon,
       thumbnail: SimonGallery,
@@ -237,7 +238,7 @@ export default function Home() {
       humza: ["HUMZA"],
       liem: ["LIEM"],
       roland: ["ROLAND"],
-      nathan: ["NATHAN"],
+      // nathan: ["NATHAN"], // HIDDEN temporarily
       simon: ["SIMON"],
     };
 
