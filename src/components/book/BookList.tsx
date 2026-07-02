@@ -13,6 +13,7 @@ import Spinner from "../web/Spinner";
 import Logo from "@/components/react-svg/logo";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
+import Adam from "@/assets/web/barbers/booking-list/adam-book.png";
 import Josh from "@/assets/web/barbers/booking-list/josh-book.jpeg";
 import John from "@/assets/web/barbers/booking-list/john-book.jpg";
 import Mike from "@/assets/web/barbers/booking-list/mike-book.jpg";
@@ -29,6 +30,7 @@ import InstagramIcon from "@/assets/book/mdi_instagram.svg";
 const HIDDEN_BARBERS = ["LUCAS", "MIKE", "NATHAN"]; // Temporarily hidden
 
 const barberImages: { [key: string]: string } = {
+  ADAM: Adam,
   JOSH: Josh,
   JOHN: John,
   MIKE: Mike,
