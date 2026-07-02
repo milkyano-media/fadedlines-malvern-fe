@@ -46,6 +46,7 @@ const barberImages: { [key: string]: string } = {
 const barberInstagramFallback: { [key: string]: string } = {
   SIMON: "@simon.blendz",
   NATHAN: "@gomothebarber",
+  ADAM: "@adzacutz",
 };
 
 const BookList = () => {
