@@ -23,6 +23,7 @@ import Liem from "@/assets/web/barbers/liem.png";
 import Roland from "@/assets/web/barbers/roland.png";
 // import Nathan from "@/assets/web/barbers/nathan.png"; // HIDDEN temporarily
 import Simon from "@/assets/web/barbers/simon.png";
+import Kyan from "@/assets/web/barbers/kyan.webp";
 // import Lucas from "@/assets/web/barbers/lucas.png"; // HIDDEN temporarily
 
 // Gallery images (for grid thumbnails)
@@ -34,6 +35,7 @@ import LiemGallery from "@/assets/web/barbers/barbers-gallery/liem.png";
 import RolandGallery from "@/assets/web/barbers/barbers-gallery/roland.png";
 // import NathanGallery from "@/assets/web/barbers/barbers-gallery/nathan.png"; // HIDDEN temporarily
 import SimonGallery from "@/assets/web/barbers/barbers-gallery/simon.png";
+import KyanGallery from "@/assets/web/barbers/barbers-gallery/kyan.webp";
 // import LucasGallery from "@/assets/web/barbers/barbers-gallery/lucas.png"; // HIDDEN temporarily
 
 export const generateLink = (text: string, disabled: boolean = false, disabledText: string = ""): JSX.Element => {
@@ -197,6 +199,13 @@ export default function Home() {
       landing: true,
       slug: "adam",
     },
+    {
+      svg: Kyan,
+      thumbnail: KyanGallery,
+      link: generateRoute("/kyan"),
+      landing: true,
+      slug: "kyan",
+    },
     // HIDDEN: Lucas temporarily hidden
     // {
     //   svg: Lucas,
@@ -220,6 +229,13 @@ export default function Home() {
 
   // Duplicate barbers for infinite scroll effect (3x for smooth looping)
   const galleryBarbers = [...baseGalleryBarbers, ...baseGalleryBarbers, ...baseGalleryBarbers];
+
+  // Pad the thumbnail grid to whole rows of 3 with empty cells, so the green grid
+  // pattern stays a uniform 3-column grid even when the last row is partly filled.
+  const gridCells = Array.from(
+    { length: Math.ceil(baseGalleryBarbers.length / 3) * 3 },
+    (_, i) => baseGalleryBarbers[i] ?? null,
+  );
 
   // Embla: Sync selected slide with state
   const onSelect = useCallback(() => {
@@ -250,6 +266,7 @@ export default function Home() {
       roland: ["ROLAND"],
       // nathan: ["NATHAN"], // HIDDEN temporarily
       simon: ["SIMON"],
+      kyan: ["KYAN"],
     };
 
     const fetchPrices = async () => {
@@ -606,55 +623,84 @@ export default function Home() {
           </div>
 
           {/* THUMBNAIL GRID (shows all barbers) */}
-          <div className="max-w-screen-md mx-auto relative px-4 md:px-6 py-2">
-
-            {/* Grid Pattern Divider Lines — rendered FIRST so grid cells paint on top */}
-            {/* First vertical line (1/3) */}
-            <div className="absolute top-0 left-[34.333%] w-[1px] md:w-[2px] h-full bg-[#33FF00] pointer-events-none" style={{ transform: 'translateX(-0.5px)' }}></div>
-            {/* Second vertical line (2/3) */}
-            <div className="absolute top-0 left-[65.666%] w-[1px] md:w-[2px] h-full bg-[#33FF00] pointer-events-none" style={{ transform: 'translateX(-0.5px)' }}></div>
-
-            {/* Horizontal line between rows (only show if more than 3 barbers) */}
-            {baseGalleryBarbers.length > 3 && (
-              <div className="absolute left-0 right-0 h-[1px] md:h-[2px] bg-[#33FF00] pointer-events-none" style={{ top: 'calc(50% - 1px)' }}></div>
-            )}
+          {/* Half-gap / edge-bleed offsets for the divider lines (responsive via CSS vars) */}
+          <div className="max-w-screen-md mx-auto relative px-4 md:px-6 py-2 [--gx:6px] [--gy:14px] [--bx:16px] [--by:8px] md:[--gx:8px] md:[--gy:20px] md:[--bx:24px]">
 
             <div className="grid grid-cols-3 gap-x-3 gap-y-7 md:gap-x-4 md:gap-y-10">
-              {baseGalleryBarbers.map((barber, index) => (
+              {gridCells.map((barber, index) => {
+                // Grid Pattern Divider Lines are drawn per-cell so they always land in the
+                // gaps, whatever the row count. Empty cells still draw them, keeping the
+                // pattern a uniform 3-column grid on a partially filled last row.
+                const col = index % 3;
+                const isFirstRow = index < 3;
+                const isLastRow = index >= gridCells.length - 3;
+
+                return (
                 <div
                   key={index}
-                  onClick={(e) => handleThumbnailClick(index, e)}
-                  className={`w-full aspect-square cursor-pointer relative transition-all duration-200 ${
-                    galleryBarbers[selectedBarber]?.originalIndex === index
-                      ? "scale-100"
-                      : "hover:scale-105"
+                  onClick={barber ? (e) => handleThumbnailClick(index, e) : undefined}
+                  className={`w-full aspect-square relative transition-all duration-200 ${
+                    !barber
+                      ? ""
+                      : galleryBarbers[selectedBarber]?.originalIndex === index
+                      ? "cursor-pointer scale-100"
+                      : "cursor-pointer hover:scale-105"
                   }`}
                 >
-                  <div className={`w-full h-full overflow-hidden rounded-md md:rounded-lg ${
-                    galleryBarbers[selectedBarber]?.originalIndex === index
-                      ? "ring-2 md:ring-4 ring-[#33FF00] opacity-100"
-                      : "hover:opacity-80"
-                  }`}>
-                    <img
-                      src={barber.thumbnail}
-                      alt={barber.name}
-                      className="w-full h-full object-cover pointer-events-none"
-                      loading="lazy"
-                    />
-                  </div>
-                  {barberMinPrices[barber.slug] !== undefined && (
-                    <span
-                      className={`absolute -top-3 z-10 bg-black/75 text-lime text-xs md:text-sm font-bold px-2 md:px-3 py-1 md:py-1.5 rounded-lg border border-lime/50 backdrop-blur-sm tracking-wide pointer-events-none shadow-md shadow-black/60 ${
-                        Math.floor(index / 3) % 2 === 0 ? "-left-2.5" : "-right-2.5"
-                      }`}
-                    >
-                      ${barberMinPrices[barber.slug] % 1 === 0
-                        ? barberMinPrices[barber.slug]
-                        : barberMinPrices[barber.slug].toFixed(2)}
-                    </span>
+                  {barber && (
+                    <>
+                      <div className={`w-full h-full overflow-hidden rounded-md md:rounded-lg ${
+                        galleryBarbers[selectedBarber]?.originalIndex === index
+                          ? "ring-2 md:ring-4 ring-[#33FF00] opacity-100"
+                          : "hover:opacity-80"
+                      }`}>
+                        <img
+                          src={barber.thumbnail}
+                          alt={barber.name}
+                          className="w-full h-full object-cover pointer-events-none"
+                          loading="lazy"
+                        />
+                      </div>
+                      {barberMinPrices[barber.slug] !== undefined && (
+                        <span
+                          className={`absolute -top-3 z-10 bg-black/75 text-lime text-xs md:text-sm font-bold px-2 md:px-3 py-1 md:py-1.5 rounded-lg border border-lime/50 backdrop-blur-sm tracking-wide pointer-events-none shadow-md shadow-black/60 ${
+                            Math.floor(index / 3) % 2 === 0 ? "-left-2.5" : "-right-2.5"
+                          }`}
+                        >
+                          ${barberMinPrices[barber.slug] % 1 === 0
+                            ? barberMinPrices[barber.slug]
+                            : barberMinPrices[barber.slug].toFixed(2)}
+                        </span>
+                      )}
+                    </>
+                  )}
+
+                  {/* Vertical divider — centered in the column gap */}
+                  {col < 2 && (
+                    <div
+                      className="absolute w-[1px] md:w-[2px] bg-[#33FF00] pointer-events-none"
+                      style={{
+                        right: 'calc(-1 * var(--gx))',
+                        top: isFirstRow ? 'calc(-1 * var(--by))' : 'calc(-1 * var(--gy))',
+                        bottom: isLastRow ? 'calc(-1 * var(--by))' : 'calc(-1 * var(--gy))',
+                      }}
+                    ></div>
+                  )}
+
+                  {/* Horizontal divider — centered in the row gap, bleeding to the outer edges */}
+                  {!isLastRow && (
+                    <div
+                      className="absolute h-[1px] md:h-[2px] bg-[#33FF00] pointer-events-none"
+                      style={{
+                        bottom: 'calc(-1 * var(--gy))',
+                        left: col === 0 ? 'calc(-1 * var(--bx))' : 'calc(-1 * var(--gx))',
+                        right: col === 2 ? 'calc(-1 * var(--bx))' : 'calc(-1 * var(--gx))',
+                      }}
+                    ></div>
                   )}
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 

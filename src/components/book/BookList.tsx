@@ -22,6 +22,7 @@ import Liem from "@/assets/web/barbers/booking-list/liem-book.jpeg";
 import Roland from "@/assets/web/barbers/booking-list/roland-book.png";
 import Nathan from "@/assets/web/barbers/booking-list/nathan-book.jpeg";
 import Simon from "@/assets/web/barbers/booking-list/simon-book.jpg";
+import Kyan from "@/assets/web/barbers/booking-list/kyan-book.webp";
 // import Lucas from "@/assets/web/barbers/booking-list/lucas-book.png"; // HIDDEN temporarily
 
 import LineBottomBorder from "@/assets/book/line-bottom-border.svg";
@@ -39,6 +40,7 @@ const barberImages: { [key: string]: string } = {
   ROLAND: Roland,
   NATHAN: Nathan,
   SIMON: Simon,
+  KYAN: Kyan,
   // HIDDEN: LUCAS: Lucas,
 };
 
