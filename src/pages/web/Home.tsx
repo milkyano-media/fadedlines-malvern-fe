@@ -74,7 +74,7 @@ export default function Home() {
   );
   const googleMapsUrlParameter = useParameterValue<string>(
     "contact.google_maps_url",
-    "https://g.co/kgs/sdqFwMj"
+    "https://maps.app.goo.gl/G6cN9QibRja7smjq5"
   );
 
   // Gallery state management

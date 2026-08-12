@@ -15,7 +15,7 @@ interface OpeningTime {
 
 const WebFooter: React.FC = () => {
     // Fetch footer parameters
-    const googleAddressParameter = useParameterValue<string>("contact.google_maps_url", "https://g.co/kgs/sdqFwMj");
+    const googleAddressParameter = useParameterValue<string>("contact.google_maps_url", "https://maps.app.goo.gl/G6cN9QibRja7smjq5");
     const googleReviewParameter = useParameterValue<string>("contact.google_review_url", "https://shorturl.at/2UR17");
     const addressParameter = useParameterValue<string>(
         "contact.address",

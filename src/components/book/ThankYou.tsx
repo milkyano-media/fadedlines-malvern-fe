@@ -821,7 +821,7 @@ END:VCALENDAR`,
           <div className='border border-stone-400 rounded-xl p-4 px-6 pt-6 flex flex-col gap-4'>
             <h3 className='text-lg md:text-xl font-medium px-8'>Location</h3>
             <iframe
-              src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44520.783413964426!2d145.06891445638522!3d-37.904472621963905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad66bc0e74de7c9%3A0x58d6bfb2ed811b32!2sFaded%20Lines%20Barbershop%20Oakleigh!5e0!3m2!1sen!2sid!4v1720231134790!5m2!1sen!2sid'
+              src='https://www.google.com/maps?q=Faded+Lines+Barbershop+Malvern,+163+Glenferrie+Rd,+Malvern+VIC+3144&output=embed'
               className='w-full rounded-xl'
               frameBorder='0'
               style={{ border: 0 }}
@@ -838,7 +838,7 @@ END:VCALENDAR`,
               </div>
               <Button className='rounded bg-stone-700 '>
                 <a
-                  href='https://www.google.com/maps/place/55+Portman+St,+Oakleigh+VIC+3166,+Australia/@-37.900189,145.0890531,17z/data=!3m1!4b1!4m6!3m5!1s0x6ad66a58f1383555:0x436afa9ac943981!8m2!3d-37.900189!4d145.091628!16s%2Fg%2F11bw42v9sv?entry=ttu'
+                  href='https://maps.app.goo.gl/G6cN9QibRja7smjq5'
                   target='_blank'
                   className='w-full h-full'
                 >
