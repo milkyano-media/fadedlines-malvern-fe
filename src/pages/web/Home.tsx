@@ -649,20 +649,14 @@ export default function Home() {
                 <div
                   key={index}
                   onClick={barber ? (e) => handleThumbnailClick(index, e) : undefined}
-                  className={`w-full aspect-square relative transition-all duration-200 ${
-                    !barber
-                      ? ""
-                      : galleryBarbers[selectedBarber]?.originalIndex === index
-                      ? "cursor-pointer scale-100"
-                      : "cursor-pointer hover:scale-105"
-                  }`}
+                  className={`w-full aspect-square relative ${barber ? "cursor-pointer" : ""}`}
                 >
                   {barber && (
                     <>
-                      <div className={`w-full h-full overflow-hidden rounded-md md:rounded-lg ${
+                      <div className={`w-full h-full overflow-hidden rounded-md md:rounded-lg transition-all duration-200 ${
                         galleryBarbers[selectedBarber]?.originalIndex === index
                           ? "ring-2 md:ring-4 ring-[#33FF00] opacity-100"
-                          : "hover:opacity-80"
+                          : "hover:opacity-80 hover:scale-105"
                       }`}>
                         <img
                           src={barber.thumbnail}
