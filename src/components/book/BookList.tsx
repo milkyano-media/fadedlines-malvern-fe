@@ -9,6 +9,7 @@ import {
   ServicesItem,
 } from "@/interfaces/BookingInterface";
 import { getAllBarber, getAllService } from "@/utils/barberApi";
+import { getBarberDisplayName } from "@/constants/barberName.constants";
 import Spinner from "../web/Spinner";
 import Logo from "@/components/react-svg/logo";
 import { ChevronDown, ChevronUp } from "lucide-react";
@@ -184,7 +185,7 @@ const BookList = () => {
         });
 
         const servicesPromises = sortedProfiles.map((profile) => {
-          const barberFirstName = profile.display_name.split(" ")[0].toLowerCase();
+          const barberFirstName = getBarberDisplayName(profile.display_name).toLowerCase();
           const barberQuery = specialBarbers.includes(barberFirstName)
             ? "all"
             : barberFirstName;
@@ -367,7 +368,7 @@ const BookList = () => {
                         {/* Info section with green background at bottom */}
                         <div className="absolute bottom-0 left-0 right-0 bg-[#063307]/80 px-5 py-4 rounded-b-[18px]">
                           <h2 className="text-[32px] font-extrabold font-inter text-white uppercase mb-1.5">
-                            {item.barber.display_name.split(" ")[0]}
+                            {getBarberDisplayName(item.barber.display_name)}
                           </h2>
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
@@ -415,7 +416,7 @@ const BookList = () => {
                           {/* Info section with green background at bottom */}
                           <div className="absolute bottom-0 left-0 right-0 bg-[#063307]/80 px-5 py-4 rounded-b-[18px]">
                             <h2 className="text-[32px] font-extrabold font-inter text-white uppercase mb-1.5">
-                              {item.barber.display_name.split(" ")[0]}
+                              {getBarberDisplayName(item.barber.display_name)}
                             </h2>
                             <div className="flex items-center justify-between">
                               <div className="flex items-center gap-2">

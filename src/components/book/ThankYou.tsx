@@ -24,6 +24,7 @@ import { useGtm } from '../hooks/UseGtm';
 import { BarberDetailResponse, ServicesItem } from '@/interfaces/BookingInterface';
 import { getBarberDetail, cancelBooking, getBookingDetails, getAvailability, rescheduleBooking } from '@/utils/barberApi';
 import { getCustomerId } from '@/utils/authApi';
+import { applyBarberNameOverride } from '@/constants/barberName.constants';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -231,7 +232,9 @@ END:VCALENDAR`,
           appointmentSegment[0].team_member_id
         );
         setBarberName(
-          `${barberDetail.team_member.given_name} ${barberDetail.team_member.family_name}`
+          applyBarberNameOverride(
+            `${barberDetail.team_member.given_name} ${barberDetail.team_member.family_name}`
+          )
         );
       }
     };
