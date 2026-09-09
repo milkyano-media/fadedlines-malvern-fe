@@ -30,7 +30,7 @@ import Ansari from "@/assets/web/barbers/booking-list/ansari-book.webp";
 import LineBottomBorder from "@/assets/book/line-bottom-border.svg";
 import InstagramIcon from "@/assets/book/mdi_instagram.svg";
 
-const HIDDEN_BARBERS = ["LUCAS", "MIKE", "NATHAN"]; // Temporarily hidden
+const HIDDEN_BARBERS = ["LUCAS", "MIKE", "NATHAN", "ROLAND"]; // Temporarily hidden
 
 const barberImages: { [key: string]: string } = {
   ADAM: Adam,

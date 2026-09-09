@@ -20,7 +20,7 @@ import Josh from "@/assets/web/barbers/josh.png";
 // import Mike from "@/assets/web/barbers/mike.png"; // HIDDEN temporarily
 import Humza from "@/assets/web/barbers/humza.png";
 import Liem from "@/assets/web/barbers/liem.png";
-import Roland from "@/assets/web/barbers/roland.png";
+// import Roland from "@/assets/web/barbers/roland.png"; // HIDDEN temporarily
 // import Nathan from "@/assets/web/barbers/nathan.png"; // HIDDEN temporarily
 import Simon from "@/assets/web/barbers/simon.png";
 import Kyan from "@/assets/web/barbers/kyan.webp";
@@ -33,7 +33,7 @@ import JoshGallery from "@/assets/web/barbers/barbers-gallery/josh.png";
 // import MikeGallery from "@/assets/web/barbers/barbers-gallery/mike.png"; // HIDDEN temporarily
 import HumzaGallery from "@/assets/web/barbers/barbers-gallery/humza.png";
 import LiemGallery from "@/assets/web/barbers/barbers-gallery/liem.png";
-import RolandGallery from "@/assets/web/barbers/barbers-gallery/roland.png";
+// import RolandGallery from "@/assets/web/barbers/barbers-gallery/roland.png"; // HIDDEN temporarily
 // import NathanGallery from "@/assets/web/barbers/barbers-gallery/nathan.png"; // HIDDEN temporarily
 import SimonGallery from "@/assets/web/barbers/barbers-gallery/simon.png";
 import KyanGallery from "@/assets/web/barbers/barbers-gallery/kyan.webp";
@@ -172,13 +172,14 @@ export default function Home() {
       landing: true,
       slug: "liem",
     },
-    {
-      svg: Roland,
-      thumbnail: RolandGallery,
-      link: generateRoute("/roland"),
-      landing: true,
-      slug: "roland",
-    },
+    // HIDDEN: Roland temporarily hidden
+    // {
+    //   svg: Roland,
+    //   thumbnail: RolandGallery,
+    //   link: generateRoute("/roland"),
+    //   landing: true,
+    //   slug: "roland",
+    // },
     // HIDDEN: Nathan temporarily hidden
     // {
     //   svg: Nathan,
@@ -272,7 +273,7 @@ export default function Home() {
       josh: ["JOSH"],
       humza: ["HUMZA"],
       liem: ["LIEM"],
-      roland: ["ROLAND"],
+      // roland: ["ROLAND"], // HIDDEN temporarily
       // nathan: ["NATHAN"], // HIDDEN temporarily
       simon: ["SIMON"],
       kyan: ["KYAN"],
