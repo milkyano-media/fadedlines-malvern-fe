@@ -15,7 +15,6 @@ import { getAllBarber, getAllService } from "@/utils/barberApi";
 import { BarberResponse, ServicesResponse, ServicesItem } from "@/interfaces/BookingInterface";
 
 // Preview images (for large preview)
-import Adam from "@/assets/web/barbers/adam.png";
 import Josh from "@/assets/web/barbers/josh.png";
 // import Mike from "@/assets/web/barbers/mike.png"; // HIDDEN temporarily
 import Humza from "@/assets/web/barbers/humza.png";
@@ -28,7 +27,6 @@ import Ansari from "@/assets/web/barbers/ansari.webp";
 // import Lucas from "@/assets/web/barbers/lucas.png"; // HIDDEN temporarily
 
 // Gallery images (for grid thumbnails)
-import AdamGallery from "@/assets/web/barbers/barbers-gallery/adam.png";
 import JoshGallery from "@/assets/web/barbers/barbers-gallery/josh.png";
 // import MikeGallery from "@/assets/web/barbers/barbers-gallery/mike.png"; // HIDDEN temporarily
 import HumzaGallery from "@/assets/web/barbers/barbers-gallery/humza.png";
@@ -196,13 +194,6 @@ export default function Home() {
       slug: "simon",
     },
     {
-      svg: Adam,
-      thumbnail: AdamGallery,
-      link: generateRoute("/adam"),
-      landing: true,
-      slug: "adam",
-    },
-    {
       svg: Kyan,
       thumbnail: KyanGallery,
       link: generateRoute("/kyan"),
@@ -269,7 +260,6 @@ export default function Home() {
 
   useEffect(() => {
     const barberAliases: Record<string, string[]> = {
-      adam: ["ADAM"],
       josh: ["JOSH"],
       humza: ["HUMZA"],
       liem: ["LIEM"],
