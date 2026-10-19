@@ -24,6 +24,7 @@ import Liem from "@/assets/web/barbers/liem.png";
 import Simon from "@/assets/web/barbers/simon.png";
 import Kyan from "@/assets/web/barbers/kyan.webp";
 import Ansari from "@/assets/web/barbers/ansari.webp";
+import Jason from "@/assets/web/barbers/jason.webp";
 // import Lucas from "@/assets/web/barbers/lucas.png"; // HIDDEN temporarily
 
 // Gallery images (for grid thumbnails)
@@ -36,6 +37,7 @@ import LiemGallery from "@/assets/web/barbers/barbers-gallery/liem.png";
 import SimonGallery from "@/assets/web/barbers/barbers-gallery/simon.png";
 import KyanGallery from "@/assets/web/barbers/barbers-gallery/kyan.webp";
 import AnsariGallery from "@/assets/web/barbers/barbers-gallery/ansari.webp";
+import JasonGallery from "@/assets/web/barbers/barbers-gallery/jason.webp";
 // import LucasGallery from "@/assets/web/barbers/barbers-gallery/lucas.png"; // HIDDEN temporarily
 
 export const generateLink = (text: string, disabled: boolean = false, disabledText: string = ""): JSX.Element => {
@@ -207,6 +209,13 @@ export default function Home() {
       landing: true,
       slug: "ansari",
     },
+    {
+      svg: Jason,
+      thumbnail: JasonGallery,
+      link: generateRoute("/jason"),
+      landing: true,
+      slug: "jason",
+    },
     // HIDDEN: Lucas temporarily hidden
     // {
     //   svg: Lucas,
@@ -268,6 +277,7 @@ export default function Home() {
       simon: ["SIMON"],
       kyan: ["KYAN"],
       ansari: ["ANSARI"],
+      jason: ["JASON"],
     };
 
     const fetchPrices = async () => {
