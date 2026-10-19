@@ -242,10 +242,17 @@ export default function Home() {
 
   // Pad the thumbnail grid to whole rows of 3 with empty cells, so the green grid
   // pattern stays a uniform 3-column grid even when the last row is partly filled.
-  const gridCells = Array.from(
-    { length: Math.ceil(baseGalleryBarbers.length / 3) * 3 },
-    (_, i) => baseGalleryBarbers[i] ?? null,
-  );
+  // A lone barber on the last row is centered (middle column) instead of left-aligned.
+  const fullRowsCount = baseGalleryBarbers.length - (baseGalleryBarbers.length % 3);
+  const lastRowBarbers = baseGalleryBarbers.slice(fullRowsCount);
+  const gridCells = [
+    ...baseGalleryBarbers.slice(0, fullRowsCount),
+    ...(lastRowBarbers.length === 1
+      ? [null, lastRowBarbers[0], null]
+      : lastRowBarbers.length === 2
+        ? [...lastRowBarbers, null]
+        : []),
+  ];
 
   // Embla: Sync selected slide with state
   const onSelect = useCallback(() => {
@@ -649,13 +656,13 @@ export default function Home() {
                 return (
                 <div
                   key={index}
-                  onClick={barber ? (e) => handleThumbnailClick(index, e) : undefined}
+                  onClick={barber ? (e) => handleThumbnailClick(barber.originalIndex, e) : undefined}
                   className={`w-full aspect-square relative ${barber ? "cursor-pointer" : ""}`}
                 >
                   {barber && (
                     <>
                       <div className={`w-full h-full overflow-hidden rounded-md md:rounded-lg transition-all duration-200 ${
-                        galleryBarbers[selectedBarber]?.originalIndex === index
+                        galleryBarbers[selectedBarber]?.originalIndex === barber.originalIndex
                           ? "ring-2 md:ring-4 ring-[#33FF00] opacity-100"
                           : "hover:opacity-80 hover:scale-105"
                       }`}>
