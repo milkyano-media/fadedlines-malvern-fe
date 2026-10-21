@@ -25,7 +25,7 @@ import Simon from "@/assets/web/barbers/simon.png";
 import Kyan from "@/assets/web/barbers/kyan.webp";
 import Ansari from "@/assets/web/barbers/ansari.webp";
 import Jason from "@/assets/web/barbers/jason.webp";
-// import Lucas from "@/assets/web/barbers/lucas.png"; // HIDDEN temporarily
+import Lucas from "@/assets/web/barbers/lucas.webp";
 
 // Gallery images (for grid thumbnails)
 import JoshGallery from "@/assets/web/barbers/barbers-gallery/josh.png";
@@ -38,7 +38,7 @@ import SimonGallery from "@/assets/web/barbers/barbers-gallery/simon.png";
 import KyanGallery from "@/assets/web/barbers/barbers-gallery/kyan.webp";
 import AnsariGallery from "@/assets/web/barbers/barbers-gallery/ansari.webp";
 import JasonGallery from "@/assets/web/barbers/barbers-gallery/jason.webp";
-// import LucasGallery from "@/assets/web/barbers/barbers-gallery/lucas.png"; // HIDDEN temporarily
+import LucasGallery from "@/assets/web/barbers/barbers-gallery/lucas.webp";
 
 export const generateLink = (text: string, disabled: boolean = false, disabledText: string = ""): JSX.Element => {
   const customize: boolean = true;
@@ -216,14 +216,13 @@ export default function Home() {
       landing: true,
       slug: "jason",
     },
-    // HIDDEN: Lucas temporarily hidden
-    // {
-    //   svg: Lucas,
-    //   thumbnail: LucasGallery,
-    //   link: generateRoute("/lucas"),
-    //   landing: true,
-    //   slug: "lucas",
-    // },
+    {
+      svg: Lucas,
+      thumbnail: LucasGallery,
+      link: generateRoute("/lucas"),
+      landing: true,
+      slug: "lucas",
+    },
   ];
 
   // Transform barberSvgs into gallery-friendly format
@@ -285,6 +284,7 @@ export default function Home() {
       kyan: ["KYAN"],
       ansari: ["ANSARI"],
       jason: ["JASON"],
+      lucas: ["LUCAS"],
     };
 
     const fetchPrices = async () => {
