@@ -56,6 +56,7 @@ const barberInstagramFallback: { [key: string]: string } = {
   ANSARI: "@ansaricuts",
   LIEM: "@lnfadezz_",
   JASON: "@jkblendzz",
+  LUCAS: "@cromerdabarber",
 };
 
 const BookList = () => {
