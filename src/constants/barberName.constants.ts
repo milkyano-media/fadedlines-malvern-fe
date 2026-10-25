@@ -1,8 +1,6 @@
 // Barbers whose Square profile name differs from the name they go by publicly.
 // Keys are matched against the uppercased Square name (display_name or full name).
-export const BARBER_NAME_OVERRIDES: { [key: string]: string } = {
-  "ABDULLAH ANSARI": "Ansari",
-};
+export const BARBER_NAME_OVERRIDES: { [key: string]: string } = {};
 
 /**
  * Applies a public-name override if the barber has one, otherwise returns the

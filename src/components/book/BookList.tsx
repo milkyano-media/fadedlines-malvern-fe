@@ -23,7 +23,6 @@ import Roland from "@/assets/web/barbers/booking-list/roland-book.png";
 import Nathan from "@/assets/web/barbers/booking-list/nathan-book.jpeg";
 import Simon from "@/assets/web/barbers/booking-list/simon-book.jpg";
 import Kyan from "@/assets/web/barbers/booking-list/kyan-book.webp";
-import Ansari from "@/assets/web/barbers/booking-list/ansari-book.webp";
 import Jason from "@/assets/web/barbers/booking-list/jason-book.webp";
 import Lucas from "@/assets/web/barbers/booking-list/lucas-book.webp";
 import Ayan from "@/assets/web/barbers/booking-list/ayan-book.webp";
@@ -43,7 +42,6 @@ const barberImages: { [key: string]: string } = {
   NATHAN: Nathan,
   SIMON: Simon,
   KYAN: Kyan,
-  ANSARI: Ansari,
   JASON: Jason,
   LUCAS: Lucas,
   AYAN: Ayan,
@@ -55,7 +53,6 @@ const barberInstagramFallback: { [key: string]: string } = {
   NATHAN: "@gomothebarber",
   JOSH: "@josh_blendz_",
   ROLAND: "@rc.fadesz",
-  ANSARI: "@ansaricuts",
   LIEM: "@lnfadezz_",
   JASON: "@jkblendzz",
   LUCAS: "@cromerdabarber",

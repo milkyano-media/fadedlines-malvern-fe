@@ -23,7 +23,6 @@ import Liem from "@/assets/web/barbers/liem.png";
 // import Nathan from "@/assets/web/barbers/nathan.png"; // HIDDEN temporarily
 import Simon from "@/assets/web/barbers/simon.png";
 import Kyan from "@/assets/web/barbers/kyan.webp";
-import Ansari from "@/assets/web/barbers/ansari.webp";
 import Jason from "@/assets/web/barbers/jason.webp";
 import Lucas from "@/assets/web/barbers/lucas.webp";
 import Ayan from "@/assets/web/barbers/ayan.webp";
@@ -37,7 +36,6 @@ import LiemGallery from "@/assets/web/barbers/barbers-gallery/liem.png";
 // import NathanGallery from "@/assets/web/barbers/barbers-gallery/nathan.png"; // HIDDEN temporarily
 import SimonGallery from "@/assets/web/barbers/barbers-gallery/simon.png";
 import KyanGallery from "@/assets/web/barbers/barbers-gallery/kyan.webp";
-import AnsariGallery from "@/assets/web/barbers/barbers-gallery/ansari.webp";
 import JasonGallery from "@/assets/web/barbers/barbers-gallery/jason.webp";
 import LucasGallery from "@/assets/web/barbers/barbers-gallery/lucas.webp";
 import AyanGallery from "@/assets/web/barbers/barbers-gallery/ayan.webp";
@@ -205,13 +203,6 @@ export default function Home() {
       slug: "kyan",
     },
     {
-      svg: Ansari,
-      thumbnail: AnsariGallery,
-      link: generateRoute("/ansari"),
-      landing: true,
-      slug: "ansari",
-    },
-    {
       svg: Jason,
       thumbnail: JasonGallery,
       link: generateRoute("/jason"),
@@ -291,7 +282,6 @@ export default function Home() {
       // nathan: ["NATHAN"], // HIDDEN temporarily
       simon: ["SIMON"],
       kyan: ["KYAN"],
-      ansari: ["ANSARI"],
       jason: ["JASON"],
       lucas: ["LUCAS"],
       ayan: ["AYAN"],
