@@ -26,6 +26,7 @@ import Kyan from "@/assets/web/barbers/kyan.webp";
 import Jason from "@/assets/web/barbers/jason.webp";
 import Lucas from "@/assets/web/barbers/lucas.webp";
 import Ayan from "@/assets/web/barbers/ayan.webp";
+import Virone from "@/assets/web/barbers/virone.webp";
 
 // Gallery images (for grid thumbnails)
 import JoshGallery from "@/assets/web/barbers/barbers-gallery/josh.png";
@@ -39,6 +40,7 @@ import KyanGallery from "@/assets/web/barbers/barbers-gallery/kyan.webp";
 import JasonGallery from "@/assets/web/barbers/barbers-gallery/jason.webp";
 import LucasGallery from "@/assets/web/barbers/barbers-gallery/lucas.webp";
 import AyanGallery from "@/assets/web/barbers/barbers-gallery/ayan.webp";
+import VironeGallery from "@/assets/web/barbers/barbers-gallery/virone.webp";
 
 export const generateLink = (text: string, disabled: boolean = false, disabledText: string = ""): JSX.Element => {
   const customize: boolean = true;
@@ -223,6 +225,13 @@ export default function Home() {
       landing: true,
       slug: "ayan",
     },
+    {
+      svg: Virone,
+      thumbnail: VironeGallery,
+      link: generateRoute("/virone"),
+      landing: true,
+      slug: "virone",
+    },
   ];
 
   // Transform barberSvgs into gallery-friendly format
@@ -285,6 +294,7 @@ export default function Home() {
       jason: ["JASON"],
       lucas: ["LUCAS"],
       ayan: ["AYAN"],
+      virone: ["VIRONE"],
     };
 
     const fetchPrices = async () => {
