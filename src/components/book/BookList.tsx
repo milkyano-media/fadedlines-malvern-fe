@@ -27,6 +27,7 @@ import Jason from "@/assets/web/barbers/booking-list/jason-book.webp";
 import Lucas from "@/assets/web/barbers/booking-list/lucas-book.webp";
 import Ayan from "@/assets/web/barbers/booking-list/ayan-book.webp";
 import Virone from "@/assets/web/barbers/booking-list/virone-book.webp";
+import Alidahir from "@/assets/web/barbers/booking-list/alidahir-book.webp";
 
 import LineBottomBorder from "@/assets/book/line-bottom-border.svg";
 import InstagramIcon from "@/assets/book/mdi_instagram.svg";
@@ -47,6 +48,7 @@ const barberImages: { [key: string]: string } = {
   LUCAS: Lucas,
   AYAN: Ayan,
   VIRONE: Virone,
+  ALIDAHIR: Alidahir,
 };
 
 // Fallback IG handles for barbers whose Square display_name doesn't embed one
@@ -60,6 +62,7 @@ const barberInstagramFallback: { [key: string]: string } = {
   LUCAS: "@cromerdabarber",
   AYAN: "@ayan.thebarber",
   VIRONE: "@v2kblendz",
+  ALIDAHIR: "@adh.cuts",
 };
 
 const BookList = () => {
